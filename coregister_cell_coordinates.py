@@ -5,6 +5,7 @@ import pandas as pd
 import os
 import sys
 
+# define input arguments
 parser = argparse.ArgumentParser(description = "Argument reader")
 parser.add_argument("-tf", "--transformation_parameter_file", help = "CSV file containing the transformation parameters", required = True, default = "")
 parser.add_argument("-d", "--cell_data_directory", help = "directory containing the cell data", required = True, default = "")
@@ -13,6 +14,7 @@ parser.add_argument("-s", "--save_files", help = "if specified, transformed cell
 
 argument = parser.parse_args()
 
+# get relevant files
 parameter_file = argument.transformation_parameter_file
 cell_data_dir = argument.cell_data_directory
 if cell_data_dir[-1] != '/':
@@ -27,6 +29,7 @@ cell_data_new_dir = cell_data_new_dir + "_coregistered"
 if not os.path.exists(cell_data_new_dir) and argument.save_files != "":
         os.makedirs(cell_data_new_dir)
 
+# read tarsnformation parameters
 parameter_df = pd.read_csv(parameter_file)
 
 print("Transforming cell (x,y) coordinates of {} files...".format(len(os.listdir(cell_data_dir))))
@@ -115,10 +118,21 @@ for data_file in os.listdir(cell_data_dir):
     x = x + hx
     y = y + hy
 
+    # crop cells outside of image
+    x[x<0] = np.nan
+    y[x<0] = np.nan
+    x[y<0] = np.nan
+    y[y<0] = np.nan
+    x[x>canvas_x] = np.nan
+    y[x>canvas_x] = np.nan
+    x[y>canvas_y] = np.nan
+    y[y>canvas_y] = np.nan
+    
     ###
     ### End of Coordinate Transformation
     ###
 
+    # save images if argument is specified
     if argument.save_images != "":
         for xi, yi in zip(x[np.isnan(x)==0], y[np.isnan(y)==0]):
             cv.circle(src, (int(xi),int(yi)), radius=5, color=(255, 0, 0), thickness=-1)
@@ -128,6 +142,7 @@ for data_file in os.listdir(cell_data_dir):
 
         cv.imwrite("coregistered_cores/"+file_name+'.png', src)
 
+    # save transformed files if argument is specified
     if argument.save_files != "":
         cell_data.loc[:, 'Cell X Position'] = x
         cell_data.loc[:, 'Cell Y Position'] = y
