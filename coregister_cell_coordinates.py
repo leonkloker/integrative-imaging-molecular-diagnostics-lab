@@ -119,12 +119,12 @@ for data_file in os.listdir(cell_data_dir):
     y = y + hy
 
     # crop cells outside of image
-    x[x<0] = np.nan
     y[x<0] = np.nan
+    x[x<0] = np.nan
     x[y<0] = np.nan
     y[y<0] = np.nan
-    x[x>canvas_x] = np.nan
     y[x>canvas_x] = np.nan
+    x[x>canvas_x] = np.nan
     x[y>canvas_y] = np.nan
     y[y>canvas_y] = np.nan
     
