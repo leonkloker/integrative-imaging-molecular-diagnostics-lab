@@ -9,8 +9,8 @@ import sys
 parser = argparse.ArgumentParser(description = "Argument reader")
 parser.add_argument("-tf", "--transformation_parameter_file", help = "CSV file containing the transformation parameters", required = True, default = "")
 parser.add_argument("-d", "--cell_data_directory", help = "directory containing the cell data", required = True, default = "")
-parser.add_argument("-i", "--save_images", help = "if specified, transformed images are saved", required = False, default = "")
-parser.add_argument("-s", "--save_files", help = "if specified, transformed cell data are saved", required = False, default = "")
+parser.add_argument("-i", "--save_images", help = "if specified, transformed images are saved", required = False, action='store_true')
+parser.add_argument("-s", "--save_files", help = "if specified, transformed cell data are saved", required = False, action='store_true')
 
 argument = parser.parse_args()
 
@@ -26,7 +26,7 @@ if cell_data_new_dir == "":
     cell_data_new_dir = cell_data_dir.split('/')[-2]
 cell_data_new_dir = cell_data_new_dir + "_coregistered"
 
-if not os.path.exists(cell_data_new_dir) and argument.save_files != "":
+if not os.path.exists(cell_data_new_dir) and argument.save_files:
         os.makedirs(cell_data_new_dir)
 
 # read tarsnformation parameters
@@ -133,7 +133,7 @@ for data_file in os.listdir(cell_data_dir):
     ###
 
     # save images if argument is specified
-    if argument.save_images != "":
+    if argument.save_images:
         for xi, yi in zip(x[np.isnan(x)==0], y[np.isnan(y)==0]):
             cv.circle(src, (int(xi),int(yi)), radius=5, color=(255, 0, 0), thickness=-1)
     
@@ -143,7 +143,7 @@ for data_file in os.listdir(cell_data_dir):
         cv.imwrite("coregistered_cores/"+file_name+'.png', src)
 
     # save transformed files if argument is specified
-    if argument.save_files != "":
+    if argument.save_files:
         cell_data.loc[:, 'Cell X Position'] = x
         cell_data.loc[:, 'Cell Y Position'] = y
         cell_data.to_csv(cell_data_new_dir + "/" + data_file)
