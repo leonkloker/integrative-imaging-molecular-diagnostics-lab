@@ -1,0 +1,862 @@
+2023-03-14 08:54:05.524864: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F AVX512_VNNI FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2023-03-14 08:54:05.701218: I tensorflow/core/util/port.cc:104] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2023-03-14 08:54:06.205451: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/leonkl/anaconda3/envs/LAB/lib/python3.9/site-packages/cv2/../../lib64:
+2023-03-14 08:54:06.205508: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/leonkl/anaconda3/envs/LAB/lib/python3.9/site-packages/cv2/../../lib64:
+2023-03-14 08:54:06.205513: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+2023-03-14 08:54:14.727176: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory; LD_LIBRARY_PATH: /home/leonkl/anaconda3/envs/LAB/lib/python3.9/site-packages/cv2/../../lib64:
+2023-03-14 08:54:14.727210: W tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:265] failed call to cuInit: UNKNOWN ERROR (303)
+2023-03-14 08:54:14.727226: I tensorflow/compiler/xla/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (icme-gpu1): /proc/driver/nvidia/version does not exist
+2023-03-14 08:54:14.727486: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F AVX512_VNNI FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Model: "double_autoencoder"
+_________________________________________________________________
+ Layer (type)                Output Shape              Param #   
+=================================================================
+ sequential (Sequential)     (None, 64)                229056    
+                                                                 
+ sequential_1 (Sequential)   (None, 64, 64, 3)         126499    
+                                                                 
+ sequential_2 (Sequential)   (None, 16)                4976      
+                                                                 
+ sequential_3 (Sequential)   (None, 30)                4990      
+                                                                 
+=================================================================
+Total params: 365,521
+Trainable params: 363,905
+Non-trainable params: 1,616
+_________________________________________________________________
+Epoch 1/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 352s - loss: 0.0907 - output_1_loss: 0.0178 - output_2_loss: 0.0235 - output_1_mean_absolute_error: 0.0960 - output_2_mean_absolute_error: 0.1251 - val_loss: 0.0249 - val_output_1_loss: 0.0132 - val_output_2_loss: 0.0065 - val_output_1_mean_absolute_error: 0.0835 - val_output_2_mean_absolute_error: 0.0702 - 352s/epoch - 72ms/step
+Epoch 2/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 323s - loss: 0.0169 - output_1_loss: 0.0112 - output_2_loss: 0.0032 - output_1_mean_absolute_error: 0.0762 - output_2_mean_absolute_error: 0.0475 - val_loss: 0.0177 - val_output_1_loss: 0.0119 - val_output_2_loss: 0.0047 - val_output_1_mean_absolute_error: 0.0763 - val_output_2_mean_absolute_error: 0.0493 - 323s/epoch - 66ms/step
+Epoch 3/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 349s - loss: 0.0135 - output_1_loss: 0.0107 - output_2_loss: 0.0019 - output_1_mean_absolute_error: 0.0743 - output_2_mean_absolute_error: 0.0309 - val_loss: 0.0136 - val_output_1_loss: 0.0104 - val_output_2_loss: 0.0024 - val_output_1_mean_absolute_error: 0.0733 - val_output_2_mean_absolute_error: 0.0305 - 349s/epoch - 72ms/step
+Epoch 4/1000
+4878/4878 - 323s - loss: 0.0121 - output_1_loss: 0.0098 - output_2_loss: 0.0015 - output_1_mean_absolute_error: 0.0712 - output_2_mean_absolute_error: 0.0254 - val_loss: 0.0150 - val_output_1_loss: 0.0102 - val_output_2_loss: 0.0042 - val_output_1_mean_absolute_error: 0.0725 - val_output_2_mean_absolute_error: 0.0341 - 323s/epoch - 66ms/step
+Epoch 5/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 353s - loss: 0.0118 - output_1_loss: 0.0097 - output_2_loss: 0.0014 - output_1_mean_absolute_error: 0.0709 - output_2_mean_absolute_error: 0.0235 - val_loss: 0.0130 - val_output_1_loss: 0.0102 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0722 - val_output_2_mean_absolute_error: 0.0257 - 353s/epoch - 72ms/step
+Epoch 6/1000
+4878/4878 - 335s - loss: 0.0113 - output_1_loss: 0.0094 - output_2_loss: 0.0013 - output_1_mean_absolute_error: 0.0696 - output_2_mean_absolute_error: 0.0220 - val_loss: 0.0138 - val_output_1_loss: 0.0096 - val_output_2_loss: 0.0037 - val_output_1_mean_absolute_error: 0.0702 - val_output_2_mean_absolute_error: 0.0309 - 335s/epoch - 69ms/step
+Epoch 7/1000
+4878/4878 - 347s - loss: 0.0107 - output_1_loss: 0.0089 - output_2_loss: 0.0012 - output_1_mean_absolute_error: 0.0678 - output_2_mean_absolute_error: 0.0210 - val_loss: 0.0131 - val_output_1_loss: 0.0091 - val_output_2_loss: 0.0036 - val_output_1_mean_absolute_error: 0.0686 - val_output_2_mean_absolute_error: 0.0304 - 347s/epoch - 71ms/step
+Epoch 8/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 352s - loss: 0.0103 - output_1_loss: 0.0086 - output_2_loss: 0.0012 - output_1_mean_absolute_error: 0.0668 - output_2_mean_absolute_error: 0.0205 - val_loss: 0.0117 - val_output_1_loss: 0.0087 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0670 - val_output_2_mean_absolute_error: 0.0259 - 352s/epoch - 72ms/step
+Epoch 9/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 312s - loss: 0.0099 - output_1_loss: 0.0083 - output_2_loss: 0.0011 - output_1_mean_absolute_error: 0.0657 - output_2_mean_absolute_error: 0.0200 - val_loss: 0.0111 - val_output_1_loss: 0.0084 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0659 - val_output_2_mean_absolute_error: 0.0243 - 312s/epoch - 64ms/step
+Epoch 10/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 329s - loss: 0.0097 - output_1_loss: 0.0081 - output_2_loss: 0.0011 - output_1_mean_absolute_error: 0.0650 - output_2_mean_absolute_error: 0.0195 - val_loss: 0.0107 - val_output_1_loss: 0.0081 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0646 - val_output_2_mean_absolute_error: 0.0235 - 329s/epoch - 67ms/step
+Epoch 11/1000
+4878/4878 - 334s - loss: 0.0095 - output_1_loss: 0.0079 - output_2_loss: 0.0010 - output_1_mean_absolute_error: 0.0643 - output_2_mean_absolute_error: 0.0191 - val_loss: 0.0113 - val_output_1_loss: 0.0079 - val_output_2_loss: 0.0029 - val_output_1_mean_absolute_error: 0.0641 - val_output_2_mean_absolute_error: 0.0259 - 334s/epoch - 68ms/step
+Epoch 12/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 355s - loss: 0.0093 - output_1_loss: 0.0078 - output_2_loss: 0.0010 - output_1_mean_absolute_error: 0.0638 - output_2_mean_absolute_error: 0.0188 - val_loss: 0.0102 - val_output_1_loss: 0.0078 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0635 - val_output_2_mean_absolute_error: 0.0229 - 355s/epoch - 73ms/step
+Epoch 13/1000
+4878/4878 - 281s - loss: 0.0091 - output_1_loss: 0.0077 - output_2_loss: 9.9528e-04 - output_1_mean_absolute_error: 0.0632 - output_2_mean_absolute_error: 0.0185 - val_loss: 0.0103 - val_output_1_loss: 0.0076 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0627 - val_output_2_mean_absolute_error: 0.0256 - 281s/epoch - 58ms/step
+Epoch 14/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 356s - loss: 0.0090 - output_1_loss: 0.0075 - output_2_loss: 9.6702e-04 - output_1_mean_absolute_error: 0.0626 - output_2_mean_absolute_error: 0.0182 - val_loss: 0.0100 - val_output_1_loss: 0.0075 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0623 - val_output_2_mean_absolute_error: 0.0240 - 356s/epoch - 73ms/step
+Epoch 15/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 332s - loss: 0.0089 - output_1_loss: 0.0075 - output_2_loss: 9.4104e-04 - output_1_mean_absolute_error: 0.0625 - output_2_mean_absolute_error: 0.0180 - val_loss: 0.0098 - val_output_1_loss: 0.0074 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0618 - val_output_2_mean_absolute_error: 0.0227 - 332s/epoch - 68ms/step
+Epoch 16/1000
+4878/4878 - 314s - loss: 0.0089 - output_1_loss: 0.0075 - output_2_loss: 9.4023e-04 - output_1_mean_absolute_error: 0.0624 - output_2_mean_absolute_error: 0.0178 - val_loss: 0.0106 - val_output_1_loss: 0.0073 - val_output_2_loss: 0.0029 - val_output_1_mean_absolute_error: 0.0614 - val_output_2_mean_absolute_error: 0.0291 - 314s/epoch - 64ms/step
+Epoch 17/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 357s - loss: 0.0088 - output_1_loss: 0.0074 - output_2_loss: 9.1951e-04 - output_1_mean_absolute_error: 0.0621 - output_2_mean_absolute_error: 0.0177 - val_loss: 0.0097 - val_output_1_loss: 0.0072 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0613 - val_output_2_mean_absolute_error: 0.0225 - 357s/epoch - 73ms/step
+Epoch 18/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 345s - loss: 0.0087 - output_1_loss: 0.0074 - output_2_loss: 9.1698e-04 - output_1_mean_absolute_error: 0.0620 - output_2_mean_absolute_error: 0.0175 - val_loss: 0.0090 - val_output_1_loss: 0.0071 - val_output_2_loss: 0.0015 - val_output_1_mean_absolute_error: 0.0607 - val_output_2_mean_absolute_error: 0.0198 - 345s/epoch - 71ms/step
+Epoch 19/1000
+4878/4878 - 261s - loss: 0.0086 - output_1_loss: 0.0073 - output_2_loss: 9.0733e-04 - output_1_mean_absolute_error: 0.0616 - output_2_mean_absolute_error: 0.0174 - val_loss: 0.0101 - val_output_1_loss: 0.0071 - val_output_2_loss: 0.0026 - val_output_1_mean_absolute_error: 0.0608 - val_output_2_mean_absolute_error: 0.0239 - 261s/epoch - 54ms/step
+Epoch 20/1000
+4878/4878 - 349s - loss: 0.0086 - output_1_loss: 0.0072 - output_2_loss: 9.1919e-04 - output_1_mean_absolute_error: 0.0614 - output_2_mean_absolute_error: 0.0174 - val_loss: 0.0096 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0603 - val_output_2_mean_absolute_error: 0.0239 - 349s/epoch - 72ms/step
+Epoch 21/1000
+4878/4878 - 349s - loss: 0.0085 - output_1_loss: 0.0072 - output_2_loss: 8.9387e-04 - output_1_mean_absolute_error: 0.0612 - output_2_mean_absolute_error: 0.0172 - val_loss: 0.0106 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0032 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0277 - 349s/epoch - 72ms/step
+Epoch 22/1000
+4878/4878 - 348s - loss: 0.0085 - output_1_loss: 0.0071 - output_2_loss: 8.9937e-04 - output_1_mean_absolute_error: 0.0611 - output_2_mean_absolute_error: 0.0172 - val_loss: 0.0091 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0214 - 348s/epoch - 71ms/step
+Epoch 23/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 355s - loss: 0.0084 - output_1_loss: 0.0071 - output_2_loss: 8.8979e-04 - output_1_mean_absolute_error: 0.0609 - output_2_mean_absolute_error: 0.0171 - val_loss: 0.0088 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0201 - 355s/epoch - 73ms/step
+Epoch 24/1000
+4878/4878 - 346s - loss: 0.0084 - output_1_loss: 0.0071 - output_2_loss: 8.7522e-04 - output_1_mean_absolute_error: 0.0609 - output_2_mean_absolute_error: 0.0170 - val_loss: 0.0112 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0039 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0329 - 346s/epoch - 71ms/step
+Epoch 25/1000
+4878/4878 - 348s - loss: 0.0084 - output_1_loss: 0.0071 - output_2_loss: 8.8405e-04 - output_1_mean_absolute_error: 0.0608 - output_2_mean_absolute_error: 0.0169 - val_loss: 0.0099 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0026 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0271 - 348s/epoch - 71ms/step
+Epoch 26/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 355s - loss: 0.0083 - output_1_loss: 0.0071 - output_2_loss: 8.8150e-04 - output_1_mean_absolute_error: 0.0608 - output_2_mean_absolute_error: 0.0169 - val_loss: 0.0088 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0201 - 355s/epoch - 73ms/step
+Epoch 27/1000
+4878/4878 - 330s - loss: 0.0083 - output_1_loss: 0.0071 - output_2_loss: 8.7715e-04 - output_1_mean_absolute_error: 0.0608 - output_2_mean_absolute_error: 0.0168 - val_loss: 0.0105 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0033 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0284 - 330s/epoch - 68ms/step
+Epoch 28/1000
+4878/4878 - 350s - loss: 0.0083 - output_1_loss: 0.0071 - output_2_loss: 8.6527e-04 - output_1_mean_absolute_error: 0.0607 - output_2_mean_absolute_error: 0.0167 - val_loss: 0.0088 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0210 - 350s/epoch - 72ms/step
+Epoch 29/1000
+4878/4878 - 350s - loss: 0.0083 - output_1_loss: 0.0071 - output_2_loss: 8.7005e-04 - output_1_mean_absolute_error: 0.0607 - output_2_mean_absolute_error: 0.0167 - val_loss: 0.0102 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0267 - 350s/epoch - 72ms/step
+Epoch 30/1000
+4878/4878 - 349s - loss: 0.0083 - output_1_loss: 0.0070 - output_2_loss: 8.5474e-04 - output_1_mean_absolute_error: 0.0607 - output_2_mean_absolute_error: 0.0166 - val_loss: 0.0095 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0232 - 349s/epoch - 72ms/step
+Epoch 31/1000
+4878/4878 - 349s - loss: 0.0082 - output_1_loss: 0.0070 - output_2_loss: 8.5503e-04 - output_1_mean_absolute_error: 0.0606 - output_2_mean_absolute_error: 0.0166 - val_loss: 0.0091 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0222 - 349s/epoch - 72ms/step
+Epoch 32/1000
+4878/4878 - 349s - loss: 0.0082 - output_1_loss: 0.0070 - output_2_loss: 8.5471e-04 - output_1_mean_absolute_error: 0.0604 - output_2_mean_absolute_error: 0.0166 - val_loss: 0.0098 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0026 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0255 - 349s/epoch - 72ms/step
+Epoch 33/1000
+4878/4878 - 350s - loss: 0.0082 - output_1_loss: 0.0070 - output_2_loss: 8.4768e-04 - output_1_mean_absolute_error: 0.0604 - output_2_mean_absolute_error: 0.0165 - val_loss: 0.0118 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0046 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0365 - 350s/epoch - 72ms/step
+Epoch 34/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 355s - loss: 0.0082 - output_1_loss: 0.0070 - output_2_loss: 8.4161e-04 - output_1_mean_absolute_error: 0.0603 - output_2_mean_absolute_error: 0.0164 - val_loss: 0.0086 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0014 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0193 - 355s/epoch - 73ms/step
+Epoch 35/1000
+4878/4878 - 273s - loss: 0.0082 - output_1_loss: 0.0070 - output_2_loss: 8.4767e-04 - output_1_mean_absolute_error: 0.0604 - output_2_mean_absolute_error: 0.0164 - val_loss: 0.0097 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0259 - 273s/epoch - 56ms/step
+Epoch 36/1000
+4878/4878 - 348s - loss: 0.0082 - output_1_loss: 0.0069 - output_2_loss: 8.4061e-04 - output_1_mean_absolute_error: 0.0603 - output_2_mean_absolute_error: 0.0164 - val_loss: 0.0096 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0248 - 348s/epoch - 71ms/step
+Epoch 37/1000
+4878/4878 - 348s - loss: 0.0081 - output_1_loss: 0.0069 - output_2_loss: 8.4340e-04 - output_1_mean_absolute_error: 0.0603 - output_2_mean_absolute_error: 0.0164 - val_loss: 0.0089 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0201 - 348s/epoch - 71ms/step
+Epoch 38/1000
+4878/4878 - 348s - loss: 0.0081 - output_1_loss: 0.0069 - output_2_loss: 8.2514e-04 - output_1_mean_absolute_error: 0.0603 - output_2_mean_absolute_error: 0.0162 - val_loss: 0.0087 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0202 - 348s/epoch - 71ms/step
+Epoch 39/1000
+4878/4878 - 348s - loss: 0.0081 - output_1_loss: 0.0069 - output_2_loss: 8.4313e-04 - output_1_mean_absolute_error: 0.0603 - output_2_mean_absolute_error: 0.0163 - val_loss: 0.0090 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0603 - val_output_2_mean_absolute_error: 0.0209 - 348s/epoch - 71ms/step
+Epoch 40/1000
+4878/4878 - 348s - loss: 0.0081 - output_1_loss: 0.0069 - output_2_loss: 8.4493e-04 - output_1_mean_absolute_error: 0.0602 - output_2_mean_absolute_error: 0.0164 - val_loss: 0.0090 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0606 - val_output_2_mean_absolute_error: 0.0238 - 348s/epoch - 71ms/step
+Epoch 41/1000
+4878/4878 - 349s - loss: 0.0081 - output_1_loss: 0.0069 - output_2_loss: 8.2845e-04 - output_1_mean_absolute_error: 0.0602 - output_2_mean_absolute_error: 0.0162 - val_loss: 0.0095 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0604 - val_output_2_mean_absolute_error: 0.0241 - 349s/epoch - 72ms/step
+Epoch 42/1000
+4878/4878 - 348s - loss: 0.0081 - output_1_loss: 0.0069 - output_2_loss: 8.3024e-04 - output_1_mean_absolute_error: 0.0601 - output_2_mean_absolute_error: 0.0162 - val_loss: 0.0088 - val_output_1_loss: 0.0071 - val_output_2_loss: 0.0014 - val_output_1_mean_absolute_error: 0.0611 - val_output_2_mean_absolute_error: 0.0193 - 348s/epoch - 71ms/step
+Epoch 43/1000
+4878/4878 - 347s - loss: 0.0081 - output_1_loss: 0.0069 - output_2_loss: 8.2330e-04 - output_1_mean_absolute_error: 0.0601 - output_2_mean_absolute_error: 0.0161 - val_loss: 0.0101 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0028 - val_output_1_mean_absolute_error: 0.0607 - val_output_2_mean_absolute_error: 0.0262 - 347s/epoch - 71ms/step
+Epoch 44/1000
+4878/4878 - 349s - loss: 0.0080 - output_1_loss: 0.0069 - output_2_loss: 8.2126e-04 - output_1_mean_absolute_error: 0.0600 - output_2_mean_absolute_error: 0.0161 - val_loss: 0.0102 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0285 - 349s/epoch - 72ms/step
+Epoch 45/1000
+4878/4878 - 348s - loss: 0.0080 - output_1_loss: 0.0068 - output_2_loss: 8.2773e-04 - output_1_mean_absolute_error: 0.0599 - output_2_mean_absolute_error: 0.0161 - val_loss: 0.0099 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0027 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0248 - 348s/epoch - 71ms/step
+Epoch 46/1000
+4878/4878 - 348s - loss: 0.0080 - output_1_loss: 0.0068 - output_2_loss: 8.1935e-04 - output_1_mean_absolute_error: 0.0599 - output_2_mean_absolute_error: 0.0161 - val_loss: 0.0180 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0107 - val_output_1_mean_absolute_error: 0.0607 - val_output_2_mean_absolute_error: 0.0582 - 348s/epoch - 71ms/step
+Epoch 47/1000
+4878/4878 - 348s - loss: 0.0080 - output_1_loss: 0.0068 - output_2_loss: 8.0437e-04 - output_1_mean_absolute_error: 0.0598 - output_2_mean_absolute_error: 0.0159 - val_loss: 0.0095 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0609 - val_output_2_mean_absolute_error: 0.0226 - 348s/epoch - 71ms/step
+Epoch 48/1000
+4878/4878 - 349s - loss: 0.0080 - output_1_loss: 0.0068 - output_2_loss: 8.1582e-04 - output_1_mean_absolute_error: 0.0598 - output_2_mean_absolute_error: 0.0160 - val_loss: 0.0087 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0014 - val_output_1_mean_absolute_error: 0.0607 - val_output_2_mean_absolute_error: 0.0188 - 349s/epoch - 71ms/step
+Epoch 49/1000
+4878/4878 - 348s - loss: 0.0079 - output_1_loss: 0.0068 - output_2_loss: 8.0281e-04 - output_1_mean_absolute_error: 0.0596 - output_2_mean_absolute_error: 0.0159 - val_loss: 0.0094 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0024 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0240 - 348s/epoch - 71ms/step
+Epoch 50/1000
+4878/4878 - 347s - loss: 0.0079 - output_1_loss: 0.0068 - output_2_loss: 8.2437e-04 - output_1_mean_absolute_error: 0.0595 - output_2_mean_absolute_error: 0.0160 - val_loss: 0.0092 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0240 - 347s/epoch - 71ms/step
+Epoch 51/1000
+4878/4878 - 348s - loss: 0.0079 - output_1_loss: 0.0067 - output_2_loss: 7.9636e-04 - output_1_mean_absolute_error: 0.0595 - output_2_mean_absolute_error: 0.0158 - val_loss: 0.0091 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0604 - val_output_2_mean_absolute_error: 0.0232 - 348s/epoch - 71ms/step
+Epoch 52/1000
+4878/4878 - 348s - loss: 0.0079 - output_1_loss: 0.0067 - output_2_loss: 8.0522e-04 - output_1_mean_absolute_error: 0.0594 - output_2_mean_absolute_error: 0.0159 - val_loss: 0.0116 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0043 - val_output_1_mean_absolute_error: 0.0609 - val_output_2_mean_absolute_error: 0.0327 - 348s/epoch - 71ms/step
+Epoch 53/1000
+4878/4878 - 348s - loss: 0.0079 - output_1_loss: 0.0067 - output_2_loss: 8.2421e-04 - output_1_mean_absolute_error: 0.0594 - output_2_mean_absolute_error: 0.0160 - val_loss: 0.0091 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0218 - 348s/epoch - 71ms/step
+Epoch 54/1000
+4878/4878 - 348s - loss: 0.0079 - output_1_loss: 0.0067 - output_2_loss: 8.0248e-04 - output_1_mean_absolute_error: 0.0594 - output_2_mean_absolute_error: 0.0158 - val_loss: 0.0088 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0607 - val_output_2_mean_absolute_error: 0.0197 - 348s/epoch - 71ms/step
+Epoch 55/1000
+4878/4878 - 348s - loss: 0.0079 - output_1_loss: 0.0067 - output_2_loss: 7.9444e-04 - output_1_mean_absolute_error: 0.0594 - output_2_mean_absolute_error: 0.0158 - val_loss: 0.0090 - val_output_1_loss: 0.0071 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0614 - val_output_2_mean_absolute_error: 0.0196 - 348s/epoch - 71ms/step
+Epoch 56/1000
+4878/4878 - 348s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8899e-04 - output_1_mean_absolute_error: 0.0593 - output_2_mean_absolute_error: 0.0157 - val_loss: 0.0093 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0605 - val_output_2_mean_absolute_error: 0.0227 - 348s/epoch - 71ms/step
+Epoch 57/1000
+4878/4878 - 348s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.9272e-04 - output_1_mean_absolute_error: 0.0593 - output_2_mean_absolute_error: 0.0157 - val_loss: 0.0120 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0050 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0381 - 348s/epoch - 71ms/step
+Epoch 58/1000
+4878/4878 - 349s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8201e-04 - output_1_mean_absolute_error: 0.0592 - output_2_mean_absolute_error: 0.0157 - val_loss: 0.0089 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0605 - val_output_2_mean_absolute_error: 0.0220 - 349s/epoch - 71ms/step
+Epoch 59/1000
+4878/4878 - 348s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.9453e-04 - output_1_mean_absolute_error: 0.0592 - output_2_mean_absolute_error: 0.0158 - val_loss: 0.0100 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0028 - val_output_1_mean_absolute_error: 0.0606 - val_output_2_mean_absolute_error: 0.0267 - 348s/epoch - 71ms/step
+Epoch 60/1000
+4878/4878 - 348s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8887e-04 - output_1_mean_absolute_error: 0.0592 - output_2_mean_absolute_error: 0.0157 - val_loss: 0.0098 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0610 - val_output_2_mean_absolute_error: 0.0249 - 348s/epoch - 71ms/step
+Epoch 61/1000
+4878/4878 - 349s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.9211e-04 - output_1_mean_absolute_error: 0.0592 - output_2_mean_absolute_error: 0.0157 - val_loss: 0.0086 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0014 - val_output_1_mean_absolute_error: 0.0604 - val_output_2_mean_absolute_error: 0.0187 - 349s/epoch - 71ms/step
+Epoch 62/1000
+4878/4878 - 348s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8194e-04 - output_1_mean_absolute_error: 0.0592 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0108 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0037 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0307 - 348s/epoch - 71ms/step
+Epoch 63/1000
+4878/4878 - 347s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8761e-04 - output_1_mean_absolute_error: 0.0591 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0093 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0222 - 347s/epoch - 71ms/step
+Epoch 64/1000
+4878/4878 - 349s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8704e-04 - output_1_mean_absolute_error: 0.0592 - output_2_mean_absolute_error: 0.0157 - val_loss: 0.0158 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0086 - val_output_1_mean_absolute_error: 0.0606 - val_output_2_mean_absolute_error: 0.0518 - 349s/epoch - 71ms/step
+Epoch 65/1000
+4878/4878 - 348s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8000e-04 - output_1_mean_absolute_error: 0.0591 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0088 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0207 - 348s/epoch - 71ms/step
+Epoch 66/1000
+4878/4878 - 349s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8879e-04 - output_1_mean_absolute_error: 0.0591 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0092 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0251 - 349s/epoch - 72ms/step
+Epoch 67/1000
+4878/4878 - 348s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.9911e-04 - output_1_mean_absolute_error: 0.0590 - output_2_mean_absolute_error: 0.0157 - val_loss: 0.0105 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0035 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0271 - 348s/epoch - 71ms/step
+Epoch 68/1000
+4878/4878 - 347s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 8.0248e-04 - output_1_mean_absolute_error: 0.0591 - output_2_mean_absolute_error: 0.0157 - val_loss: 0.0093 - val_output_1_loss: 0.0071 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0613 - val_output_2_mean_absolute_error: 0.0211 - 347s/epoch - 71ms/step
+Epoch 69/1000
+4878/4878 - 348s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.9602e-04 - output_1_mean_absolute_error: 0.0590 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0125 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0055 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0394 - 348s/epoch - 71ms/step
+Epoch 70/1000
+4878/4878 - 348s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8145e-04 - output_1_mean_absolute_error: 0.0590 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0091 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0608 - val_output_2_mean_absolute_error: 0.0223 - 348s/epoch - 71ms/step
+Epoch 71/1000
+4878/4878 - 279s - loss: 0.0077 - output_1_loss: 0.0067 - output_2_loss: 7.8246e-04 - output_1_mean_absolute_error: 0.0589 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0094 - val_output_1_loss: 0.0071 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0617 - val_output_2_mean_absolute_error: 0.0227 - 279s/epoch - 57ms/step
+Epoch 72/1000
+4878/4878 - 257s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8633e-04 - output_1_mean_absolute_error: 0.0590 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0096 - val_output_1_loss: 0.0075 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0634 - val_output_2_mean_absolute_error: 0.0219 - 257s/epoch - 53ms/step
+Epoch 73/1000
+4878/4878 - 343s - loss: 0.0077 - output_1_loss: 0.0067 - output_2_loss: 7.8230e-04 - output_1_mean_absolute_error: 0.0590 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0092 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0237 - 343s/epoch - 70ms/step
+Epoch 74/1000
+4878/4878 - 443s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8743e-04 - output_1_mean_absolute_error: 0.0590 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0087 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0015 - val_output_1_mean_absolute_error: 0.0604 - val_output_2_mean_absolute_error: 0.0213 - 443s/epoch - 91ms/step
+Epoch 75/1000
+4878/4878 - 416s - loss: 0.0078 - output_1_loss: 0.0066 - output_2_loss: 7.9812e-04 - output_1_mean_absolute_error: 0.0589 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0181 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0109 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0558 - 416s/epoch - 85ms/step
+Epoch 76/1000
+4878/4878 - 355s - loss: 0.0078 - output_1_loss: 0.0067 - output_2_loss: 7.8684e-04 - output_1_mean_absolute_error: 0.0590 - output_2_mean_absolute_error: 0.0156 - val_loss: 0.0222 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0153 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0674 - 355s/epoch - 73ms/step
+Epoch 77/1000
+4878/4878 - 410s - loss: 0.0077 - output_1_loss: 0.0067 - output_2_loss: 7.7781e-04 - output_1_mean_absolute_error: 0.0590 - output_2_mean_absolute_error: 0.0155 - val_loss: 0.0092 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0272 - 410s/epoch - 84ms/step
+Epoch 78/1000
+4878/4878 - 437s - loss: 0.0077 - output_1_loss: 0.0066 - output_2_loss: 7.6692e-04 - output_1_mean_absolute_error: 0.0589 - output_2_mean_absolute_error: 0.0155 - val_loss: 0.0101 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0028 - val_output_1_mean_absolute_error: 0.0607 - val_output_2_mean_absolute_error: 0.0286 - 437s/epoch - 90ms/step
+Epoch 79/1000
+4878/4878 - 424s - loss: 0.0077 - output_1_loss: 0.0066 - output_2_loss: 7.7494e-04 - output_1_mean_absolute_error: 0.0589 - output_2_mean_absolute_error: 0.0155 - val_loss: 0.0202 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0131 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0719 - 424s/epoch - 87ms/step
+Epoch 80/1000
+4878/4878 - 411s - loss: 0.0077 - output_1_loss: 0.0066 - output_2_loss: 7.8207e-04 - output_1_mean_absolute_error: 0.0588 - output_2_mean_absolute_error: 0.0155 - val_loss: 0.0144 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0073 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0456 - 411s/epoch - 84ms/step
+Epoch 81/1000
+4878/4878 - 419s - loss: 0.0077 - output_1_loss: 0.0066 - output_2_loss: 7.8024e-04 - output_1_mean_absolute_error: 0.0587 - output_2_mean_absolute_error: 0.0155 - val_loss: 0.0092 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0240 - 419s/epoch - 86ms/step
+Epoch 82/1000
+4878/4878 - 440s - loss: 0.0077 - output_1_loss: 0.0066 - output_2_loss: 7.6793e-04 - output_1_mean_absolute_error: 0.0587 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0116 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0045 - val_output_1_mean_absolute_error: 0.0604 - val_output_2_mean_absolute_error: 0.0363 - 440s/epoch - 90ms/step
+Epoch 83/1000
+4878/4878 - 441s - loss: 0.0077 - output_1_loss: 0.0066 - output_2_loss: 7.7828e-04 - output_1_mean_absolute_error: 0.0587 - output_2_mean_absolute_error: 0.0155 - val_loss: 0.0096 - val_output_1_loss: 0.0072 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0618 - val_output_2_mean_absolute_error: 0.0254 - 441s/epoch - 90ms/step
+Epoch 84/1000
+4878/4878 - 432s - loss: 0.0077 - output_1_loss: 0.0066 - output_2_loss: 7.8268e-04 - output_1_mean_absolute_error: 0.0586 - output_2_mean_absolute_error: 0.0155 - val_loss: 0.0088 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0607 - val_output_2_mean_absolute_error: 0.0206 - 432s/epoch - 88ms/step
+Epoch 85/1000
+4878/4878 - 459s - loss: 0.0077 - output_1_loss: 0.0066 - output_2_loss: 7.7125e-04 - output_1_mean_absolute_error: 0.0586 - output_2_mean_absolute_error: 0.0155 - val_loss: 0.0096 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0027 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0280 - 459s/epoch - 94ms/step
+Epoch 86/1000
+4878/4878 - 446s - loss: 0.0077 - output_1_loss: 0.0066 - output_2_loss: 7.7774e-04 - output_1_mean_absolute_error: 0.0586 - output_2_mean_absolute_error: 0.0155 - val_loss: 0.0087 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0207 - 446s/epoch - 91ms/step
+Epoch 87/1000
+4878/4878 - 461s - loss: 0.0077 - output_1_loss: 0.0066 - output_2_loss: 7.7559e-04 - output_1_mean_absolute_error: 0.0586 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0095 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0611 - val_output_2_mean_absolute_error: 0.0257 - 461s/epoch - 95ms/step
+Epoch 88/1000
+4878/4878 - 468s - loss: 0.0076 - output_1_loss: 0.0066 - output_2_loss: 7.7323e-04 - output_1_mean_absolute_error: 0.0586 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0097 - val_output_1_loss: 0.0072 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0617 - val_output_2_mean_absolute_error: 0.0265 - 468s/epoch - 96ms/step
+Epoch 89/1000
+4878/4878 - 457s - loss: 0.0076 - output_1_loss: 0.0066 - output_2_loss: 7.5690e-04 - output_1_mean_absolute_error: 0.0586 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0096 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0247 - 457s/epoch - 94ms/step
+Epoch 90/1000
+4878/4878 - 462s - loss: 0.0076 - output_1_loss: 0.0066 - output_2_loss: 7.6290e-04 - output_1_mean_absolute_error: 0.0586 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0086 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0198 - 462s/epoch - 95ms/step
+Epoch 91/1000
+4878/4878 - 457s - loss: 0.0076 - output_1_loss: 0.0066 - output_2_loss: 7.5541e-04 - output_1_mean_absolute_error: 0.0585 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0101 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0283 - 457s/epoch - 94ms/step
+Epoch 92/1000
+4878/4878 - 463s - loss: 0.0076 - output_1_loss: 0.0066 - output_2_loss: 7.6366e-04 - output_1_mean_absolute_error: 0.0585 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0101 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0325 - 463s/epoch - 95ms/step
+Epoch 93/1000
+4878/4878 - 459s - loss: 0.0076 - output_1_loss: 0.0066 - output_2_loss: 7.6594e-04 - output_1_mean_absolute_error: 0.0585 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0149 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0079 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0558 - 459s/epoch - 94ms/step
+Epoch 94/1000
+4878/4878 - 469s - loss: 0.0076 - output_1_loss: 0.0066 - output_2_loss: 7.6847e-04 - output_1_mean_absolute_error: 0.0585 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0118 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0048 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0384 - 469s/epoch - 96ms/step
+Epoch 95/1000
+4878/4878 - 456s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.6562e-04 - output_1_mean_absolute_error: 0.0585 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0093 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0266 - 456s/epoch - 93ms/step
+Epoch 96/1000
+4878/4878 - 459s - loss: 0.0076 - output_1_loss: 0.0066 - output_2_loss: 7.6672e-04 - output_1_mean_absolute_error: 0.0585 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0093 - val_output_1_loss: 0.0074 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0628 - val_output_2_mean_absolute_error: 0.0215 - 459s/epoch - 94ms/step
+Epoch 97/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 394s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.6309e-04 - output_1_mean_absolute_error: 0.0585 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0085 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0014 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0186 - 394s/epoch - 81ms/step
+Epoch 98/1000
+4878/4878 - 324s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.7653e-04 - output_1_mean_absolute_error: 0.0585 - output_2_mean_absolute_error: 0.0155 - val_loss: 0.0100 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0029 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0287 - 324s/epoch - 66ms/step
+Epoch 99/1000
+4878/4878 - 346s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.7591e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0169 - val_output_1_loss: 0.0073 - val_output_2_loss: 0.0093 - val_output_1_mean_absolute_error: 0.0624 - val_output_2_mean_absolute_error: 0.0574 - 346s/epoch - 71ms/step
+Epoch 100/1000
+4878/4878 - 347s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.7027e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0170 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0099 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0564 - 347s/epoch - 71ms/step
+Epoch 101/1000
+4878/4878 - 348s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.7901e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0155 - val_loss: 0.0096 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0026 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0315 - 348s/epoch - 71ms/step
+Epoch 102/1000
+4878/4878 - 347s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5919e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0096 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0024 - val_output_1_mean_absolute_error: 0.0610 - val_output_2_mean_absolute_error: 0.0253 - 347s/epoch - 71ms/step
+Epoch 103/1000
+4878/4878 - 348s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.6027e-04 - output_1_mean_absolute_error: 0.0585 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0105 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0033 - val_output_1_mean_absolute_error: 0.0608 - val_output_2_mean_absolute_error: 0.0332 - 348s/epoch - 71ms/step
+Epoch 104/1000
+4878/4878 - 318s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5432e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0096 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0250 - 318s/epoch - 65ms/step
+Epoch 105/1000
+4878/4878 - 343s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.7437e-04 - output_1_mean_absolute_error: 0.0585 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0113 - val_output_1_loss: 0.0072 - val_output_2_loss: 0.0039 - val_output_1_mean_absolute_error: 0.0619 - val_output_2_mean_absolute_error: 0.0336 - 343s/epoch - 70ms/step
+Epoch 106/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 353s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5825e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0084 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0014 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0194 - 353s/epoch - 72ms/step
+Epoch 107/1000
+4878/4878 - 313s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5199e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0101 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0297 - 313s/epoch - 64ms/step
+Epoch 108/1000
+4878/4878 - 347s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.4426e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0089 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0608 - val_output_2_mean_absolute_error: 0.0205 - 347s/epoch - 71ms/step
+Epoch 109/1000
+4878/4878 - 346s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5233e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0123 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0053 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0424 - 346s/epoch - 71ms/step
+Epoch 110/1000
+4878/4878 - 346s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.7065e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0154 - val_loss: 0.0089 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0218 - 346s/epoch - 71ms/step
+Epoch 111/1000
+4878/4878 - 346s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5053e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0152 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0082 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0572 - 346s/epoch - 71ms/step
+Epoch 112/1000
+4878/4878 - 347s - loss: 0.0076 - output_1_loss: 0.0066 - output_2_loss: 7.5570e-04 - output_1_mean_absolute_error: 0.0585 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0088 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0228 - 347s/epoch - 71ms/step
+Epoch 113/1000
+4878/4878 - 345s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.6037e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0100 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0277 - 345s/epoch - 71ms/step
+Epoch 114/1000
+4878/4878 - 345s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.6048e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0122 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0051 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0426 - 345s/epoch - 71ms/step
+Epoch 115/1000
+4878/4878 - 347s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5727e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0098 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0028 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0274 - 347s/epoch - 71ms/step
+Epoch 116/1000
+4878/4878 - 347s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.6073e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0098 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0027 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0323 - 347s/epoch - 71ms/step
+Epoch 117/1000
+4878/4878 - 346s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5810e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0125 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0053 - val_output_1_mean_absolute_error: 0.0607 - val_output_2_mean_absolute_error: 0.0445 - 346s/epoch - 71ms/step
+Epoch 118/1000
+4878/4878 - 346s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.6158e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0143 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0074 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0426 - 346s/epoch - 71ms/step
+Epoch 119/1000
+4878/4878 - 347s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5314e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0093 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0604 - val_output_2_mean_absolute_error: 0.0248 - 347s/epoch - 71ms/step
+Epoch 120/1000
+4878/4878 - 347s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4738e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0096 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0027 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0262 - 347s/epoch - 71ms/step
+Epoch 121/1000
+4878/4878 - 347s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5867e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0101 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0267 - 347s/epoch - 71ms/step
+Epoch 122/1000
+4878/4878 - 346s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.6194e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0179 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0108 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0636 - 346s/epoch - 71ms/step
+Epoch 123/1000
+4878/4878 - 346s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.4734e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0115 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0045 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0356 - 346s/epoch - 71ms/step
+Epoch 124/1000
+4878/4878 - 346s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5843e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0127 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0057 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0471 - 346s/epoch - 71ms/step
+Epoch 125/1000
+4878/4878 - 343s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.7092e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0138 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0068 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0531 - 343s/epoch - 70ms/step
+Epoch 126/1000
+4878/4878 - 341s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5810e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0143 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0073 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0435 - 341s/epoch - 70ms/step
+Epoch 127/1000
+4878/4878 - 340s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.6090e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0087 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0236 - 340s/epoch - 70ms/step
+Epoch 128/1000
+4878/4878 - 340s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.5431e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0124 - val_output_1_loss: 0.0074 - val_output_2_loss: 0.0047 - val_output_1_mean_absolute_error: 0.0633 - val_output_2_mean_absolute_error: 0.0417 - 340s/epoch - 70ms/step
+Epoch 129/1000
+4878/4878 - 295s - loss: 0.0076 - output_1_loss: 0.0065 - output_2_loss: 7.4776e-04 - output_1_mean_absolute_error: 0.0584 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0090 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0263 - 295s/epoch - 60ms/step
+Epoch 130/1000
+4878/4878 - 339s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4321e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0149 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0078 - val_output_1_mean_absolute_error: 0.0605 - val_output_2_mean_absolute_error: 0.0539 - 339s/epoch - 69ms/step
+Epoch 131/1000
+4878/4878 - 277s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5251e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0087 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0211 - 277s/epoch - 57ms/step
+Epoch 132/1000
+4878/4878 - 328s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.3469e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0086 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0197 - 328s/epoch - 67ms/step
+Epoch 133/1000
+4878/4878 - 345s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5450e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0103 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0032 - val_output_1_mean_absolute_error: 0.0605 - val_output_2_mean_absolute_error: 0.0321 - 345s/epoch - 71ms/step
+Epoch 134/1000
+4878/4878 - 417s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4802e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0168 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0099 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0619 - 417s/epoch - 86ms/step
+Epoch 135/1000
+4878/4878 - 401s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5666e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0209 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0141 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0595 - 401s/epoch - 82ms/step
+Epoch 136/1000
+4878/4878 - 414s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5800e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0108 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0038 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0350 - 414s/epoch - 85ms/step
+Epoch 137/1000
+4878/4878 - 404s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4904e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0110 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0040 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0364 - 404s/epoch - 83ms/step
+Epoch 138/1000
+4878/4878 - 396s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5538e-04 - output_1_mean_absolute_error: 0.0583 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0093 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0260 - 396s/epoch - 81ms/step
+Epoch 139/1000
+4878/4878 - 417s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5187e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0093 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0226 - 417s/epoch - 85ms/step
+Epoch 140/1000
+4878/4878 - 411s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4661e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0101 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0608 - val_output_2_mean_absolute_error: 0.0306 - 411s/epoch - 84ms/step
+Epoch 141/1000
+4878/4878 - 377s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5778e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0206 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0136 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0740 - 377s/epoch - 77ms/step
+Epoch 142/1000
+4878/4878 - 344s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5875e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0088 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0218 - 344s/epoch - 70ms/step
+Epoch 143/1000
+4878/4878 - 375s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4273e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0100 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0310 - 375s/epoch - 77ms/step
+Epoch 144/1000
+4878/4878 - 374s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.3430e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0094 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0024 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0252 - 374s/epoch - 77ms/step
+Epoch 145/1000
+4878/4878 - 375s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4744e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0193 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0123 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0621 - 375s/epoch - 77ms/step
+Epoch 146/1000
+4878/4878 - 382s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5077e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0124 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0054 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0377 - 382s/epoch - 78ms/step
+Epoch 147/1000
+4878/4878 - 377s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.6436e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0214 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0145 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0718 - 377s/epoch - 77ms/step
+Epoch 148/1000
+4878/4878 - 531s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4337e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0105 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0035 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0349 - 531s/epoch - 109ms/step
+Epoch 149/1000
+4878/4878 - 486s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4834e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0093 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0250 - 486s/epoch - 100ms/step
+Epoch 150/1000
+4878/4878 - 376s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5063e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0095 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0027 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0288 - 376s/epoch - 77ms/step
+Epoch 151/1000
+4878/4878 - 377s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4622e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0103 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0032 - val_output_1_mean_absolute_error: 0.0606 - val_output_2_mean_absolute_error: 0.0330 - 377s/epoch - 77ms/step
+Epoch 152/1000
+4878/4878 - 376s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4650e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0140 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0071 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0452 - 376s/epoch - 77ms/step
+Epoch 153/1000
+4878/4878 - 375s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.3949e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0089 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0605 - val_output_2_mean_absolute_error: 0.0233 - 375s/epoch - 77ms/step
+Epoch 154/1000
+4878/4878 - 376s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5258e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0162 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0094 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0476 - 376s/epoch - 77ms/step
+Epoch 155/1000
+4878/4878 - 382s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5034e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0094 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0607 - val_output_2_mean_absolute_error: 0.0226 - 382s/epoch - 78ms/step
+Epoch 156/1000
+4878/4878 - 375s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5427e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0138 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0068 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0451 - 375s/epoch - 77ms/step
+Epoch 157/1000
+4878/4878 - 554s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5272e-04 - output_1_mean_absolute_error: 0.0582 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0101 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0275 - 554s/epoch - 114ms/step
+Epoch 158/1000
+4878/4878 - 575s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4992e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0093 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0274 - 575s/epoch - 118ms/step
+Epoch 159/1000
+4878/4878 - 571s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4547e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0110 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0041 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0345 - 571s/epoch - 117ms/step
+Epoch 160/1000
+4878/4878 - 566s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4242e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0089 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0242 - 566s/epoch - 116ms/step
+Epoch 161/1000
+4878/4878 - 568s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.6042e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0097 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0026 - val_output_1_mean_absolute_error: 0.0603 - val_output_2_mean_absolute_error: 0.0272 - 568s/epoch - 116ms/step
+Epoch 162/1000
+4878/4878 - 571s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4468e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0120 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0052 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0390 - 571s/epoch - 117ms/step
+Epoch 163/1000
+4878/4878 - 571s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5020e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0093 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0024 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0258 - 571s/epoch - 117ms/step
+Epoch 164/1000
+4878/4878 - 558s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4862e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0214 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0143 - val_output_1_mean_absolute_error: 0.0604 - val_output_2_mean_absolute_error: 0.0718 - 558s/epoch - 114ms/step
+Epoch 165/1000
+4878/4878 - 615s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4326e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0091 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0236 - 615s/epoch - 126ms/step
+Epoch 166/1000
+4878/4878 - 615s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4099e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0109 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0041 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0356 - 615s/epoch - 126ms/step
+Epoch 167/1000
+4878/4878 - 615s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4288e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0091 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0270 - 615s/epoch - 126ms/step
+Epoch 168/1000
+4878/4878 - 619s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4483e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0133 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0062 - val_output_1_mean_absolute_error: 0.0607 - val_output_2_mean_absolute_error: 0.0405 - 619s/epoch - 127ms/step
+Epoch 169/1000
+4878/4878 - 615s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4434e-04 - output_1_mean_absolute_error: 0.0581 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0102 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0604 - val_output_2_mean_absolute_error: 0.0276 - 615s/epoch - 126ms/step
+Epoch 170/1000
+4878/4878 - 623s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4505e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0110 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0039 - val_output_1_mean_absolute_error: 0.0605 - val_output_2_mean_absolute_error: 0.0327 - 623s/epoch - 128ms/step
+Epoch 171/1000
+4878/4878 - 672s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.5396e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0130 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0060 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0387 - 672s/epoch - 138ms/step
+Epoch 172/1000
+4878/4878 - 790s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4170e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0089 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0233 - 790s/epoch - 162ms/step
+Epoch 173/1000
+4878/4878 - 1068s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.4185e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0119 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0049 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0391 - 1068s/epoch - 219ms/step
+Epoch 174/1000
+4878/4878 - 1025s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.5016e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0111 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0041 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0325 - 1025s/epoch - 210ms/step
+Epoch 175/1000
+4878/4878 - 1079s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.4762e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0089 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0211 - 1079s/epoch - 221ms/step
+Epoch 176/1000
+4878/4878 - 1069s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.5860e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0090 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0605 - val_output_2_mean_absolute_error: 0.0225 - 1069s/epoch - 219ms/step
+Epoch 177/1000
+4878/4878 - 1078s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4399e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0144 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0074 - val_output_1_mean_absolute_error: 0.0605 - val_output_2_mean_absolute_error: 0.0456 - 1078s/epoch - 221ms/step
+Epoch 178/1000
+4878/4878 - 1095s - loss: 0.0075 - output_1_loss: 0.0065 - output_2_loss: 7.4836e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0134 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0063 - val_output_1_mean_absolute_error: 0.0605 - val_output_2_mean_absolute_error: 0.0429 - 1095s/epoch - 224ms/step
+Epoch 179/1000
+4878/4878 - 1075s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.3432e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0099 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0029 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0284 - 1075s/epoch - 220ms/step
+Epoch 180/1000
+4878/4878 - 1093s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.6221e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0141 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0071 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0485 - 1093s/epoch - 224ms/step
+Epoch 181/1000
+4878/4878 - 1099s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.5070e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0102 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0610 - val_output_2_mean_absolute_error: 0.0278 - 1099s/epoch - 225ms/step
+Epoch 182/1000
+4878/4878 - 1059s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.4879e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0092 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0222 - 1059s/epoch - 217ms/step
+Epoch 183/1000
+4878/4878 - 1046s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4814e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0106 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0037 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0365 - 1046s/epoch - 214ms/step
+Epoch 184/1000
+4878/4878 - 906s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.5365e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0107 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0038 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0351 - 906s/epoch - 186ms/step
+Epoch 185/1000
+4878/4878 - 615s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5354e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0092 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0233 - 615s/epoch - 126ms/step
+Epoch 186/1000
+4878/4878 - 641s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.5569e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0092 - val_output_1_loss: 0.0071 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0616 - val_output_2_mean_absolute_error: 0.0235 - 641s/epoch - 131ms/step
+Epoch 187/1000
+4878/4878 - 1063s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4274e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0135 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0063 - val_output_1_mean_absolute_error: 0.0614 - val_output_2_mean_absolute_error: 0.0463 - 1063s/epoch - 218ms/step
+Epoch 188/1000
+4878/4878 - 1042s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.6390e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0122 - val_output_1_loss: 0.0071 - val_output_2_loss: 0.0048 - val_output_1_mean_absolute_error: 0.0619 - val_output_2_mean_absolute_error: 0.0337 - 1042s/epoch - 214ms/step
+Epoch 189/1000
+4878/4878 - 1024s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4351e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0134 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0062 - val_output_1_mean_absolute_error: 0.0612 - val_output_2_mean_absolute_error: 0.0418 - 1024s/epoch - 210ms/step
+Epoch 190/1000
+4878/4878 - 1017s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.6292e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0087 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0226 - 1017s/epoch - 209ms/step
+Epoch 191/1000
+4878/4878 - 1021s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.4924e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0131 - val_output_1_loss: 0.0070 - val_output_2_loss: 0.0059 - val_output_1_mean_absolute_error: 0.0610 - val_output_2_mean_absolute_error: 0.0392 - 1021s/epoch - 209ms/step
+Epoch 192/1000
+4878/4878 - 1022s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.5787e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0104 - val_output_1_loss: 0.0069 - val_output_2_loss: 0.0033 - val_output_1_mean_absolute_error: 0.0607 - val_output_2_mean_absolute_error: 0.0291 - 1022s/epoch - 210ms/step
+Epoch 193/1000
+4878/4878 - 1008s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5336e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0088 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0208 - 1008s/epoch - 207ms/step
+Epoch 194/1000
+4878/4878 - 1031s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4864e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0100 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0601 - val_output_2_mean_absolute_error: 0.0297 - 1031s/epoch - 211ms/step
+Epoch 195/1000
+4878/4878 - 1038s - loss: 0.0075 - output_1_loss: 0.0064 - output_2_loss: 7.4825e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0092 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0231 - 1038s/epoch - 213ms/step
+Epoch 196/1000
+4878/4878 - 822s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4343e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0092 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0227 - 822s/epoch - 169ms/step
+Epoch 197/1000
+4878/4878 - 845s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4838e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0101 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0032 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0289 - 845s/epoch - 173ms/step
+Epoch 198/1000
+4878/4878 - 839s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6115e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0091 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0229 - 839s/epoch - 172ms/step
+Epoch 199/1000
+4878/4878 - 819s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4623e-04 - output_1_mean_absolute_error: 0.0580 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0098 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0029 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0275 - 819s/epoch - 168ms/step
+Epoch 200/1000
+4878/4878 - 800s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4767e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0123 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0054 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0415 - 800s/epoch - 164ms/step
+Epoch 201/1000
+4878/4878 - 815s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5425e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0090 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0221 - 815s/epoch - 167ms/step
+Epoch 202/1000
+4878/4878 - 839s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5076e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0101 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0033 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0333 - 839s/epoch - 172ms/step
+Epoch 203/1000
+4878/4878 - 809s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5196e-04 - output_1_mean_absolute_error: 0.0578 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0153 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0084 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0511 - 809s/epoch - 166ms/step
+Epoch 204/1000
+4878/4878 - 829s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4846e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0216 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0147 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0737 - 829s/epoch - 170ms/step
+Epoch 205/1000
+4878/4878 - 751s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5176e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0100 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0313 - 751s/epoch - 154ms/step
+Epoch 206/1000
+4878/4878 - 690s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4885e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0090 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0254 - 690s/epoch - 141ms/step
+Epoch 207/1000
+4878/4878 - 721s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4948e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0236 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0166 - val_output_1_mean_absolute_error: 0.0605 - val_output_2_mean_absolute_error: 0.0788 - 721s/epoch - 148ms/step
+Epoch 208/1000
+4878/4878 - 717s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4194e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0103 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0034 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0285 - 717s/epoch - 147ms/step
+Epoch 209/1000
+4878/4878 - 684s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5258e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0097 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0029 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0251 - 684s/epoch - 140ms/step
+Epoch 210/1000
+4878/4878 - 660s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5062e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0090 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0264 - 660s/epoch - 135ms/step
+Epoch 211/1000
+4878/4878 - 706s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5430e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0142 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0072 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0518 - 706s/epoch - 145ms/step
+Epoch 212/1000
+4878/4878 - 715s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4174e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0108 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0038 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0331 - 715s/epoch - 147ms/step
+Epoch 213/1000
+4878/4878 - 703s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4122e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0100 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0032 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0292 - 703s/epoch - 144ms/step
+Epoch 214/1000
+4878/4878 - 702s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6818e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0087 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0211 - 702s/epoch - 144ms/step
+Epoch 215/1000
+4878/4878 - 699s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4885e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0132 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0063 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0458 - 699s/epoch - 143ms/step
+Epoch 216/1000
+4878/4878 - 686s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4967e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0087 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0252 - 686s/epoch - 141ms/step
+Epoch 217/1000
+4878/4878 - 719s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.3991e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0095 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0027 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0255 - 719s/epoch - 147ms/step
+Epoch 218/1000
+4878/4878 - 726s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.3765e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0086 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0213 - 726s/epoch - 149ms/step
+Epoch 219/1000
+4878/4878 - 633s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4585e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0087 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0218 - 633s/epoch - 130ms/step
+Epoch 220/1000
+4878/4878 - 540s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.3896e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0087 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0208 - 540s/epoch - 111ms/step
+Epoch 221/1000
+4878/4878 - 531s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5412e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0119 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0050 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0401 - 531s/epoch - 109ms/step
+Epoch 222/1000
+4878/4878 - 559s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5148e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0090 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0264 - 559s/epoch - 115ms/step
+Epoch 223/1000
+4878/4878 - 557s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6445e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0101 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0033 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0316 - 557s/epoch - 114ms/step
+Epoch 224/1000
+4878/4878 - 507s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5110e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0102 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0034 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0297 - 507s/epoch - 104ms/step
+Epoch 225/1000
+4878/4878 - 547s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5428e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0158 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0089 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0558 - 547s/epoch - 112ms/step
+Epoch 226/1000
+4878/4878 - 558s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6258e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0113 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0044 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0342 - 558s/epoch - 114ms/step
+Epoch 227/1000
+4878/4878 - 566s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4712e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0087 - val_output_1_loss: 0.0068 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0602 - val_output_2_mean_absolute_error: 0.0211 - 566s/epoch - 116ms/step
+Epoch 228/1000
+4878/4878 - 538s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4659e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0089 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0261 - 538s/epoch - 110ms/step
+Epoch 229/1000
+4878/4878 - 554s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4347e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0112 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0044 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0400 - 554s/epoch - 114ms/step
+Epoch 230/1000
+4878/4878 - 555s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6179e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0118 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0049 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0343 - 555s/epoch - 114ms/step
+Epoch 231/1000
+4878/4878 - 558s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6247e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0084 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0222 - 558s/epoch - 114ms/step
+Epoch 232/1000
+4878/4878 - 555s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6159e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0088 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0235 - 555s/epoch - 114ms/step
+Epoch 233/1000
+4878/4878 - 509s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4647e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0090 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0224 - 509s/epoch - 104ms/step
+Epoch 234/1000
+4878/4878 - 382s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6072e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0105 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0037 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0316 - 382s/epoch - 78ms/step
+Epoch 235/1000
+4878/4878 - 381s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4715e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0087 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0210 - 381s/epoch - 78ms/step
+Epoch 236/1000
+4878/4878 - 382s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6969e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0153 - val_loss: 0.0130 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0062 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0409 - 382s/epoch - 78ms/step
+Epoch 237/1000
+4878/4878 - 382s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5459e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0088 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0215 - 382s/epoch - 78ms/step
+Epoch 238/1000
+4878/4878 - 382s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6100e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0094 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0026 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0267 - 382s/epoch - 78ms/step
+Epoch 239/1000
+4878/4878 - 382s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.4530e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0136 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0066 - val_output_1_mean_absolute_error: 0.0599 - val_output_2_mean_absolute_error: 0.0461 - 382s/epoch - 78ms/step
+Epoch 240/1000
+4878/4878 - 382s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6172e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0123 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0056 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0396 - 382s/epoch - 78ms/step
+Epoch 241/1000
+4878/4878 - 375s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.3664e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0091 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0244 - 375s/epoch - 77ms/step
+Epoch 242/1000
+4878/4878 - 382s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.6017e-04 - output_1_mean_absolute_error: 0.0578 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0103 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0036 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0313 - 382s/epoch - 78ms/step
+Epoch 243/1000
+4878/4878 - 382s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5884e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0095 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0028 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0258 - 382s/epoch - 78ms/step
+Epoch 244/1000
+4878/4878 - 382s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5564e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0094 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0026 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0285 - 382s/epoch - 78ms/step
+Epoch 245/1000
+4878/4878 - 383s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4408e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0088 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0237 - 383s/epoch - 78ms/step
+Epoch 246/1000
+4878/4878 - 401s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5267e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0180 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0112 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0624 - 401s/epoch - 82ms/step
+Epoch 247/1000
+4878/4878 - 499s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5234e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0099 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0297 - 499s/epoch - 102ms/step
+Epoch 248/1000
+4878/4878 - 607s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4357e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0114 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0046 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0374 - 607s/epoch - 124ms/step
+Epoch 249/1000
+4878/4878 - 666s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.5086e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0085 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0202 - 666s/epoch - 136ms/step
+Epoch 250/1000
+4878/4878 - 645s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4148e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0103 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0035 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0302 - 645s/epoch - 132ms/step
+Epoch 251/1000
+4878/4878 - 561s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4888e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0092 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0024 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0261 - 561s/epoch - 115ms/step
+Epoch 252/1000
+4878/4878 - 485s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.3968e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0110 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0042 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0374 - 485s/epoch - 99ms/step
+Epoch 253/1000
+4878/4878 - 443s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5268e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0091 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0250 - 443s/epoch - 91ms/step
+Epoch 254/1000
+4878/4878 - 396s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4631e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0097 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0029 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0272 - 396s/epoch - 81ms/step
+Epoch 255/1000
+4878/4878 - 382s - loss: 0.0074 - output_1_loss: 0.0063 - output_2_loss: 7.6615e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0195 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0127 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0674 - 382s/epoch - 78ms/step
+Epoch 256/1000
+4878/4878 - 386s - loss: 0.0074 - output_1_loss: 0.0063 - output_2_loss: 7.5624e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0089 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0584 - val_output_2_mean_absolute_error: 0.0226 - 386s/epoch - 79ms/step
+Epoch 257/1000
+4878/4878 - 383s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4922e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0085 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0207 - 383s/epoch - 79ms/step
+Epoch 258/1000
+4878/4878 - 385s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5037e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0087 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0226 - 385s/epoch - 79ms/step
+Epoch 259/1000
+4878/4878 - 450s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5698e-04 - output_1_mean_absolute_error: 0.0578 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0093 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0268 - 450s/epoch - 92ms/step
+Epoch 260/1000
+4878/4878 - 439s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4719e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0086 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0213 - 439s/epoch - 90ms/step
+Epoch 261/1000
+4878/4878 - 408s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5812e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0085 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0200 - 408s/epoch - 84ms/step
+Epoch 262/1000
+4878/4878 - 386s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4887e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0101 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0034 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0317 - 386s/epoch - 79ms/step
+Epoch 263/1000
+4878/4878 - 394s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5352e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0088 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0233 - 394s/epoch - 81ms/step
+Epoch 264/1000
+4878/4878 - 380s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4166e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0102 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0034 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0301 - 380s/epoch - 78ms/step
+Epoch 265/1000
+4878/4878 - 457s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5067e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0088 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0600 - val_output_2_mean_absolute_error: 0.0203 - 457s/epoch - 94ms/step
+Epoch 266/1000
+4878/4878 - 467s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5186e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0091 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0227 - 467s/epoch - 96ms/step
+Epoch 267/1000
+4878/4878 - 443s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5929e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0152 - val_loss: 0.0087 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0217 - 443s/epoch - 91ms/step
+Epoch 268/1000
+4878/4878 - 402s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4101e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0091 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0253 - 402s/epoch - 83ms/step
+Epoch 269/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 389s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5324e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0083 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0193 - 389s/epoch - 80ms/step
+Epoch 270/1000
+4878/4878 - 383s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.4223e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0092 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0024 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0237 - 383s/epoch - 79ms/step
+Epoch 271/1000
+4878/4878 - 387s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4497e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0096 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0028 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0268 - 387s/epoch - 79ms/step
+Epoch 272/1000
+4878/4878 - 376s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4615e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0083 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0198 - 376s/epoch - 77ms/step
+Epoch 273/1000
+4878/4878 - 379s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.5344e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0099 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0277 - 379s/epoch - 78ms/step
+Epoch 274/1000
+4878/4878 - 383s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4602e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0086 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0199 - 383s/epoch - 79ms/step
+Epoch 275/1000
+4878/4878 - 397s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4599e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0087 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0236 - 397s/epoch - 81ms/step
+Epoch 276/1000
+4878/4878 - 377s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4969e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0103 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0035 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0323 - 377s/epoch - 77ms/step
+Epoch 277/1000
+4878/4878 - 377s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.2978e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0087 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0217 - 377s/epoch - 77ms/step
+Epoch 278/1000
+4878/4878 - 398s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4542e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0098 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0275 - 398s/epoch - 82ms/step
+Epoch 279/1000
+4878/4878 - 409s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5337e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0102 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0033 - val_output_1_mean_absolute_error: 0.0598 - val_output_2_mean_absolute_error: 0.0271 - 409s/epoch - 84ms/step
+Epoch 280/1000
+4878/4878 - 414s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.3698e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0091 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0250 - 414s/epoch - 85ms/step
+Epoch 281/1000
+4878/4878 - 402s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4831e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0092 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0024 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0245 - 402s/epoch - 82ms/step
+Epoch 282/1000
+4878/4878 - 399s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4313e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0105 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0037 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0308 - 399s/epoch - 82ms/step
+Epoch 283/1000
+4878/4878 - 396s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5026e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0098 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0282 - 396s/epoch - 81ms/step
+Epoch 284/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 395s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4046e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0082 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0014 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0192 - 395s/epoch - 81ms/step
+Epoch 285/1000
+4878/4878 - 383s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4769e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0088 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0585 - val_output_2_mean_absolute_error: 0.0223 - 383s/epoch - 78ms/step
+Epoch 286/1000
+4878/4878 - 376s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5564e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0189 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0120 - val_output_1_mean_absolute_error: 0.0597 - val_output_2_mean_absolute_error: 0.0595 - 376s/epoch - 77ms/step
+Epoch 287/1000
+4878/4878 - 382s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.4155e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0083 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0196 - 382s/epoch - 78ms/step
+Epoch 288/1000
+4878/4878 - 386s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4263e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0092 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0231 - 386s/epoch - 79ms/step
+Epoch 289/1000
+4878/4878 - 382s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5302e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0088 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0241 - 382s/epoch - 78ms/step
+Epoch 290/1000
+4878/4878 - 387s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5523e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0093 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0275 - 387s/epoch - 79ms/step
+Epoch 291/1000
+4878/4878 - 393s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4350e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0092 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0595 - val_output_2_mean_absolute_error: 0.0276 - 393s/epoch - 81ms/step
+Epoch 292/1000
+4878/4878 - 383s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4782e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0099 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0301 - 383s/epoch - 78ms/step
+Epoch 293/1000
+4878/4878 - 376s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4826e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0098 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0270 - 376s/epoch - 77ms/step
+Epoch 294/1000
+4878/4878 - 382s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.4166e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0095 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0028 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0276 - 382s/epoch - 78ms/step
+Epoch 295/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 393s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5628e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0082 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0014 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0194 - 393s/epoch - 81ms/step
+Epoch 296/1000
+4878/4878 - 380s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4713e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0104 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0036 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0303 - 380s/epoch - 78ms/step
+Epoch 297/1000
+4878/4878 - 383s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4274e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0083 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0015 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0197 - 383s/epoch - 79ms/step
+Epoch 298/1000
+4878/4878 - 382s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4704e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0127 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0060 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0412 - 382s/epoch - 78ms/step
+Epoch 299/1000
+4878/4878 - 383s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4771e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0093 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0247 - 383s/epoch - 78ms/step
+Epoch 300/1000
+4878/4878 - 383s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.3121e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0130 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0063 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0487 - 383s/epoch - 78ms/step
+Epoch 301/1000
+4878/4878 - 382s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4109e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0096 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0028 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0283 - 382s/epoch - 78ms/step
+Epoch 302/1000
+4878/4878 - 383s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4366e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0122 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0055 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0415 - 383s/epoch - 78ms/step
+Epoch 303/1000
+4878/4878 - 382s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4102e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0086 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0238 - 382s/epoch - 78ms/step
+Epoch 304/1000
+4878/4878 - 375s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4837e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0094 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0027 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0279 - 375s/epoch - 77ms/step
+Epoch 305/1000
+4878/4878 - 394s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4722e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0107 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0040 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0324 - 394s/epoch - 81ms/step
+Epoch 306/1000
+4878/4878 - 394s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5014e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0107 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0040 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0356 - 394s/epoch - 81ms/step
+Epoch 307/1000
+4878/4878 - 767s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5541e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0087 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0210 - 767s/epoch - 157ms/step
+Epoch 308/1000
+4878/4878 - 791s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.5049e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0145 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0078 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0462 - 791s/epoch - 162ms/step
+Epoch 309/1000
+4878/4878 - 777s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.4646e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0088 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0237 - 777s/epoch - 159ms/step
+Epoch 310/1000
+4878/4878 - 790s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4123e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0147 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0079 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0471 - 790s/epoch - 162ms/step
+Epoch 311/1000
+4878/4878 - 756s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4465e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0108 - val_output_1_loss: 0.0076 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0630 - val_output_2_mean_absolute_error: 0.0322 - 756s/epoch - 155ms/step
+Epoch 312/1000
+4878/4878 - 769s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3551e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0121 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0054 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0388 - 769s/epoch - 158ms/step
+Epoch 313/1000
+4878/4878 - 774s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3904e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0112 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0044 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0327 - 774s/epoch - 159ms/step
+Epoch 314/1000
+4878/4878 - 759s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3956e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0086 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0233 - 759s/epoch - 156ms/step
+Epoch 315/1000
+4878/4878 - 775s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5805e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0095 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0027 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0283 - 775s/epoch - 159ms/step
+Epoch 316/1000
+4878/4878 - 737s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4187e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0104 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0037 - val_output_1_mean_absolute_error: 0.0585 - val_output_2_mean_absolute_error: 0.0320 - 737s/epoch - 151ms/step
+Epoch 317/1000
+4878/4878 - 760s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.6066e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0110 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0042 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0324 - 760s/epoch - 156ms/step
+Epoch 318/1000
+4878/4878 - 781s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3647e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0205 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0139 - val_output_1_mean_absolute_error: 0.0584 - val_output_2_mean_absolute_error: 0.0655 - 781s/epoch - 160ms/step
+Epoch 319/1000
+4878/4878 - 759s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4851e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0097 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0029 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0303 - 759s/epoch - 156ms/step
+Epoch 320/1000
+4878/4878 - 766s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4723e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0137 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0068 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0461 - 766s/epoch - 157ms/step
+Epoch 321/1000
+4878/4878 - 736s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4798e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0093 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0265 - 736s/epoch - 151ms/step
+Epoch 322/1000
+4878/4878 - 766s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3639e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0085 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0217 - 766s/epoch - 157ms/step
+Epoch 323/1000
+4878/4878 - 785s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5300e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0090 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0226 - 785s/epoch - 161ms/step
+Epoch 324/1000
+4878/4878 - 782s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5611e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0090 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0241 - 782s/epoch - 160ms/step
+Epoch 325/1000
+4878/4878 - 776s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5006e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0088 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0236 - 776s/epoch - 159ms/step
+Epoch 326/1000
+4878/4878 - 768s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4181e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0088 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0242 - 768s/epoch - 157ms/step
+Epoch 327/1000
+4878/4878 - 763s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5952e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0095 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0027 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0280 - 763s/epoch - 156ms/step
+Epoch 328/1000
+4878/4878 - 757s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5327e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0086 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0225 - 757s/epoch - 155ms/step
+Epoch 329/1000
+4878/4878 - 772s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3142e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0087 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0230 - 772s/epoch - 158ms/step
+Epoch 330/1000
+4878/4878 - 775s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3461e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0083 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0015 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0206 - 775s/epoch - 159ms/step
+Epoch 331/1000
+4878/4878 - 754s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4398e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0131 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0064 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0466 - 754s/epoch - 155ms/step
+Epoch 332/1000
+4878/4878 - 776s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.3097e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0092 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0261 - 776s/epoch - 159ms/step
+Epoch 333/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 802s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4104e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0081 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0014 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0204 - 802s/epoch - 164ms/step
+Epoch 334/1000
+4878/4878 - 767s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3310e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0084 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0210 - 767s/epoch - 157ms/step
+Epoch 335/1000
+4878/4878 - 731s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5740e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0083 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0216 - 731s/epoch - 150ms/step
+Epoch 336/1000
+4878/4878 - 784s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5263e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0096 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0028 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0286 - 784s/epoch - 161ms/step
+Epoch 337/1000
+4878/4878 - 768s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4052e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0089 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0257 - 768s/epoch - 158ms/step
+Epoch 338/1000
+4878/4878 - 790s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4203e-04 - output_1_mean_absolute_error: 0.0579 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0093 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0026 - val_output_1_mean_absolute_error: 0.0585 - val_output_2_mean_absolute_error: 0.0279 - 790s/epoch - 162ms/step
+Epoch 339/1000
+4878/4878 - 802s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3779e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0090 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0248 - 802s/epoch - 164ms/step
+Epoch 340/1000
+4878/4878 - 765s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5359e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0091 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0241 - 765s/epoch - 157ms/step
+Epoch 341/1000
+4878/4878 - 776s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4227e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0088 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0232 - 776s/epoch - 159ms/step
+Epoch 342/1000
+4878/4878 - 756s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5437e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0151 - val_loss: 0.0133 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0066 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0437 - 756s/epoch - 155ms/step
+Epoch 343/1000
+4878/4878 - 775s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4510e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0106 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0038 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0349 - 775s/epoch - 159ms/step
+Epoch 344/1000
+4878/4878 - 764s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3959e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0123 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0055 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0422 - 764s/epoch - 157ms/step
+Epoch 345/1000
+4878/4878 - 754s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4459e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0093 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0024 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0276 - 754s/epoch - 155ms/step
+Epoch 346/1000
+4878/4878 - 786s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3637e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0086 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0231 - 786s/epoch - 161ms/step
+Epoch 347/1000
+4878/4878 - 769s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4949e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0091 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0024 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0268 - 769s/epoch - 158ms/step
+Epoch 348/1000
+4878/4878 - 777s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.2601e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0090 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0230 - 777s/epoch - 159ms/step
+Epoch 349/1000
+4878/4878 - 746s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5057e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0413 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0346 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.1117 - 746s/epoch - 153ms/step
+Epoch 350/1000
+4878/4878 - 744s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3305e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0115 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0048 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0367 - 744s/epoch - 153ms/step
+Epoch 351/1000
+4878/4878 - 779s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3807e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0096 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0029 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0290 - 779s/epoch - 160ms/step
+Epoch 352/1000
+4878/4878 - 764s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4164e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0091 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0024 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0262 - 764s/epoch - 157ms/step
+Epoch 353/1000
+4878/4878 - 777s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4169e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0087 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0585 - val_output_2_mean_absolute_error: 0.0241 - 777s/epoch - 159ms/step
+Epoch 354/1000
+4878/4878 - 751s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.2019e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0089 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0021 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0255 - 751s/epoch - 154ms/step
+Epoch 355/1000
+4878/4878 - 757s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.2917e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0087 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0244 - 757s/epoch - 155ms/step
+Epoch 356/1000
+4878/4878 - 777s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3656e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0084 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0224 - 777s/epoch - 159ms/step
+Epoch 357/1000
+4878/4878 - 737s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4340e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0083 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0202 - 737s/epoch - 151ms/step
+Epoch 358/1000
+4878/4878 - 773s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.4729e-04 - output_1_mean_absolute_error: 0.0576 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0083 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0581 - val_output_2_mean_absolute_error: 0.0227 - 773s/epoch - 159ms/step
+Epoch 359/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 780s - loss: 0.0073 - output_1_loss: 0.0064 - output_2_loss: 7.3201e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0081 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0013 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0193 - 780s/epoch - 160ms/step
+Epoch 360/1000
+4878/4878 - 746s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4039e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0089 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0236 - 746s/epoch - 153ms/step
+Epoch 361/1000
+4878/4878 - 775s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3811e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0093 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0026 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0263 - 775s/epoch - 159ms/step
+Epoch 362/1000
+4878/4878 - 754s - loss: 0.0074 - output_1_loss: 0.0064 - output_2_loss: 7.4592e-04 - output_1_mean_absolute_error: 0.0577 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0086 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0235 - 754s/epoch - 155ms/step
+Epoch 363/1000
+4878/4878 - 767s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3699e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0098 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0593 - val_output_2_mean_absolute_error: 0.0302 - 767s/epoch - 157ms/step
+Epoch 364/1000
+4878/4878 - 726s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4032e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0085 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0018 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0219 - 726s/epoch - 149ms/step
+Epoch 365/1000
+4878/4878 - 738s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5496e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0082 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0014 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0190 - 738s/epoch - 151ms/step
+Epoch 366/1000
+4878/4878 - 769s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3777e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0128 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0060 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0397 - 769s/epoch - 158ms/step
+Epoch 367/1000
+4878/4878 - 765s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3776e-04 - output_1_mean_absolute_error: 0.0575 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0103 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0035 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0298 - 765s/epoch - 157ms/step
+Epoch 368/1000
+4878/4878 - 776s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.2864e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0122 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0056 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0364 - 776s/epoch - 159ms/step
+Epoch 369/1000
+4878/4878 - 760s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.5721e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0100 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0033 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0290 - 760s/epoch - 156ms/step
+Epoch 370/1000
+4878/4878 - 730s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4024e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0110 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0042 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0342 - 730s/epoch - 150ms/step
+Epoch 371/1000
+4878/4878 - 768s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3937e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0097 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0281 - 768s/epoch - 157ms/step
+Epoch 372/1000
+4878/4878 - 747s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.4395e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0097 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0030 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0295 - 747s/epoch - 153ms/step
+Epoch 373/1000
+4878/4878 - 767s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4056e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0107 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0039 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0342 - 767s/epoch - 157ms/step
+Epoch 374/1000
+4878/4878 - 770s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3005e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0082 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0015 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0204 - 770s/epoch - 158ms/step
+Epoch 375/1000
+4878/4878 - 751s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.4433e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0085 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0017 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0213 - 751s/epoch - 154ms/step
+Epoch 376/1000
+4878/4878 - 784s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3490e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0087 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0225 - 784s/epoch - 161ms/step
+Epoch 377/1000
+4878/4878 - 773s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3681e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0086 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0229 - 773s/epoch - 158ms/step
+Epoch 378/1000
+WARNING:absl:Found untraced functions such as _update_step_xla, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op, _jit_compiled_convolution_op while saving (showing 5 of 15). These functions will not be directly callable after loading.
+4878/4878 - 816s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.3266e-04 - output_1_mean_absolute_error: 0.0574 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0081 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0014 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0187 - 816s/epoch - 167ms/step
+Epoch 379/1000
+4878/4878 - 745s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.4344e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0132 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0064 - val_output_1_mean_absolute_error: 0.0594 - val_output_2_mean_absolute_error: 0.0431 - 745s/epoch - 153ms/step
+Epoch 380/1000
+4878/4878 - 774s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.2510e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0100 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0033 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0319 - 774s/epoch - 159ms/step
+Epoch 381/1000
+4878/4878 - 793s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3949e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0090 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0258 - 793s/epoch - 163ms/step
+Epoch 382/1000
+4878/4878 - 787s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4688e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0096 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0029 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0292 - 787s/epoch - 161ms/step
+Epoch 383/1000
+4878/4878 - 813s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3941e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0122 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0055 - val_output_1_mean_absolute_error: 0.0590 - val_output_2_mean_absolute_error: 0.0373 - 813s/epoch - 167ms/step
+Epoch 384/1000
+4878/4878 - 744s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4917e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0083 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0206 - 744s/epoch - 152ms/step
+Epoch 385/1000
+4878/4878 - 755s - loss: 0.0072 - output_1_loss: 0.0062 - output_2_loss: 7.3588e-04 - output_1_mean_absolute_error: 0.0570 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0085 - val_output_1_loss: 0.0064 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0582 - val_output_2_mean_absolute_error: 0.0245 - 755s/epoch - 155ms/step
+Epoch 386/1000
+4878/4878 - 753s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.2603e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0092 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0591 - val_output_2_mean_absolute_error: 0.0240 - 753s/epoch - 154ms/step
+Epoch 387/1000
+4878/4878 - 762s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3039e-04 - output_1_mean_absolute_error: 0.0573 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0201 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0135 - val_output_1_mean_absolute_error: 0.0583 - val_output_2_mean_absolute_error: 0.0598 - 762s/epoch - 156ms/step
+Epoch 388/1000
+4878/4878 - 779s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4202e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0082 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0015 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0208 - 779s/epoch - 160ms/step
+Epoch 389/1000
+4878/4878 - 759s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3617e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0084 - val_output_1_loss: 0.0067 - val_output_2_loss: 0.0015 - val_output_1_mean_absolute_error: 0.0596 - val_output_2_mean_absolute_error: 0.0201 - 759s/epoch - 156ms/step
+Epoch 390/1000
+4878/4878 - 778s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.4519e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0087 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0020 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0245 - 778s/epoch - 160ms/step
+Epoch 391/1000
+4878/4878 - 785s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3571e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0086 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0255 - 785s/epoch - 161ms/step
+Epoch 392/1000
+4878/4878 - 773s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3725e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0090 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0023 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0242 - 773s/epoch - 158ms/step
+Epoch 393/1000
+4878/4878 - 754s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.2508e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0142 - val_output_1_loss: 0.0066 - val_output_2_loss: 0.0075 - val_output_1_mean_absolute_error: 0.0592 - val_output_2_mean_absolute_error: 0.0467 - 754s/epoch - 155ms/step
+Epoch 394/1000
+4878/4878 - 761s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3708e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0083 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0221 - 761s/epoch - 156ms/step
+Epoch 395/1000
+4878/4878 - 744s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3612e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0092 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0284 - 744s/epoch - 153ms/step
+Epoch 396/1000
+4878/4878 - 781s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.4064e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0083 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0016 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0215 - 781s/epoch - 160ms/step
+Epoch 397/1000
+4878/4878 - 774s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.4319e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0086 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0019 - val_output_1_mean_absolute_error: 0.0586 - val_output_2_mean_absolute_error: 0.0231 - 774s/epoch - 159ms/step
+Epoch 398/1000
+4878/4878 - 773s - loss: 0.0073 - output_1_loss: 0.0063 - output_2_loss: 7.4064e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0115 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0049 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0396 - 773s/epoch - 159ms/step
+Epoch 399/1000
+4878/4878 - 767s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.5058e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0093 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0027 - val_output_1_mean_absolute_error: 0.0587 - val_output_2_mean_absolute_error: 0.0291 - 767s/epoch - 157ms/step
+Epoch 400/1000
+4878/4878 - 774s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3604e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0095 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0028 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0277 - 774s/epoch - 159ms/step
+Epoch 401/1000
+4878/4878 - 808s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.5380e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0150 - val_loss: 0.0131 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0065 - val_output_1_mean_absolute_error: 0.0584 - val_output_2_mean_absolute_error: 0.0435 - 808s/epoch - 166ms/step
+Epoch 402/1000
+4878/4878 - 792s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3495e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0091 - val_output_1_loss: 0.0064 - val_output_2_loss: 0.0025 - val_output_1_mean_absolute_error: 0.0583 - val_output_2_mean_absolute_error: 0.0248 - 792s/epoch - 162ms/step
+Epoch 403/1000
+4878/4878 - 775s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3850e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0089 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0022 - val_output_1_mean_absolute_error: 0.0588 - val_output_2_mean_absolute_error: 0.0231 - 775s/epoch - 159ms/step
+Epoch 404/1000
+4878/4878 - 774s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3398e-04 - output_1_mean_absolute_error: 0.0572 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0110 - val_output_1_loss: 0.0064 - val_output_2_loss: 0.0044 - val_output_1_mean_absolute_error: 0.0583 - val_output_2_mean_absolute_error: 0.0354 - 774s/epoch - 159ms/step
+Epoch 405/1000
+4878/4878 - 775s - loss: 0.0072 - output_1_loss: 0.0063 - output_2_loss: 7.3630e-04 - output_1_mean_absolute_error: 0.0571 - output_2_mean_absolute_error: 0.0149 - val_loss: 0.0098 - val_output_1_loss: 0.0065 - val_output_2_loss: 0.0031 - val_output_1_mean_absolute_error: 0.0589 - val_output_2_mean_absolute_error: 0.0332 - 775s/epoch - 159ms/step
+Epoch 406/1000
