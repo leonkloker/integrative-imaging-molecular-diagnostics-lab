@@ -54,21 +54,33 @@ for data_file in os.listdir(cell_data_dir):
     shift_w = float(parameters['shift_width'])
     angle = -2 * np.pi * float(parameters['angle']) / 360
 
+    try:
+        ymin = float(parameters['ymin'])
+        xmax = float(parameters['ymax'])
+        xmin = float(parameters['xmin'])
+        xmax = float(parameters['xmax'])
+
+    except KeyError:
+        ymin = np.nan
+        ymax = np.nan
+        xmin = np.nan
+        xmax = np.nan
+
     src = cv.imread('TMA_cores_M06_M07_panels/M06/Cores/'+file_name+'.png')
     
     # load original x, y coordinates from file
     x = np.array(cell_data.loc[:,'Cell X Position']).reshape((1,-1))
     y = np.array(cell_data.loc[:,'Cell Y Position']).reshape((1,-1))
 
-    ###
-    ### Coordinate Transformation
-    ###
+    #################################
+    ### Coordinate Transformation ###
+    #################################
 
     # set smallest values to 0
     x = x - np.min(x)
     y = y - np.min(y)
 
-    # define center of cells as rotation center
+    """# define center of cells as rotation center
     hx = np.max(x)/2
     hy = np.max(y)/2
 
@@ -87,7 +99,7 @@ for data_file in os.listdir(cell_data_dir):
 
     # reset origin
     x = x - np.min(x)
-    y = y - np.min(y)
+    y = y - np.min(y)"""
 
     # define size of the underlying canvas
     canvas_x = src.shape[1]
@@ -96,6 +108,17 @@ for data_file in os.listdir(cell_data_dir):
     # scale image up to the size of the canvas + additional scaling
     x = x * (canvas_x + w) / np.max(x)
     y = y * (canvas_y + h) / np.max(y)
+
+    # if erosion in OpenCV was performed, crop cells outside of image
+    if ymin != np.nan:
+        x[y<ymin] = np.nan
+        y[y<ymin] = np.nan
+        x[y>ymax] = np.nan
+        y[y>ymax] = np.nan
+        x[x<xmin] = np.nan
+        y[x<xmin] = np.nan
+        x[x>xmax] = np.nan
+        y[x>xmax] = np.nan
 
     # shift all points
     x = x + shift_w
@@ -128,9 +151,9 @@ for data_file in os.listdir(cell_data_dir):
     x[y>canvas_y] = np.nan
     y[y>canvas_y] = np.nan
     
-    ###
-    ### End of Coordinate Transformation
-    ###
+    ########################################
+    ### End of Coordinate Transformation ###
+    ########################################
 
     # save images if argument is specified
     if argument.save_images:
