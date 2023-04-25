@@ -29,7 +29,7 @@ cell_data_new_dir = cell_data_new_dir + "_coregistered"
 if not os.path.exists(cell_data_new_dir) and argument.save_files:
         os.makedirs(cell_data_new_dir)
 
-# read tarsnformation parameters
+# read transformation parameters
 parameter_df = pd.read_csv(parameter_file)
 
 print("Transforming cell (x,y) coordinates of {} files...".format(len(os.listdir(cell_data_dir))))
@@ -54,23 +54,26 @@ for data_file in os.listdir(cell_data_dir):
     shift_w = float(parameters['shift_width'])
     angle = -2 * np.pi * float(parameters['angle']) / 360
 
+    # load additional parameters if specified
     try:
-        ymin = float(parameters['ymin'])
-        xmax = float(parameters['ymax'])
-        xmin = float(parameters['xmin'])
-        xmax = float(parameters['xmax'])
-
+        ymin_crop = float(parameters['ymin'])
+        ymax_crop = float(parameters['ymax'])
+        xmin_crop = float(parameters['xmin'])
+        xmax_crop = float(parameters['xmax'])
     except KeyError:
-        ymin = np.nan
-        ymax = np.nan
-        xmin = np.nan
-        xmax = np.nan
+        ymin_crop = np.nan
+        ymax_crop = np.nan
+        xmin_crop = np.nan
+        xmax_crop = np.nan
 
-    src = cv.imread('TMA_cores_M06_M07_panels/M06/Cores/'+file_name+'.png')
+    # load core to get original size and to visualize coregistration if flag -i specified,
+    # directory might need to be adjusted
+    src = cv.imread('TMA_cores_new/Cores/'+file_name+'.png')
     
-    # load original x, y coordinates from file
-    x = np.array(cell_data.loc[:,'Cell X Position']).reshape((1,-1))
-    y = np.array(cell_data.loc[:,'Cell Y Position']).reshape((1,-1))
+    # load original x, y coordinates from file,
+    # names of columns of coordinates might need to be adjusted
+    x = np.array(cell_data.loc[:,'Centroid X µm']).reshape((-1,))
+    y = np.array(cell_data.loc[:,'Centroid Y µm']).reshape((-1,))
 
     #################################
     ### Coordinate Transformation ###
@@ -105,32 +108,43 @@ for data_file in os.listdir(cell_data_dir):
     canvas_x = src.shape[1]
     canvas_y = src.shape[0]
 
-    # scale image up to the size of the canvas + additional scaling
-    x = x * (canvas_x + w) / np.max(x)
-    y = y * (canvas_y + h) / np.max(y)
+    # transform micrometer to pixel 
+    x = x / 0.497
+    y = y / 0.497
 
     # if erosion in OpenCV was performed, crop cells outside of image
-    if ymin != np.nan:
-        x[y<ymin] = np.nan
-        y[y<ymin] = np.nan
-        x[y>ymax] = np.nan
-        y[y>ymax] = np.nan
-        x[x<xmin] = np.nan
-        y[x<xmin] = np.nan
-        x[x>xmax] = np.nan
-        y[x>xmax] = np.nan
+    if ymin_crop != np.nan:
+        x[y<ymin_crop] = np.nan
+        y[y<ymin_crop] = np.nan
+        x[y>ymax_crop] = np.nan
+        y[y>ymax_crop] = np.nan
+        x[x<xmin_crop] = np.nan
+        y[x<xmin_crop] = np.nan
+        x[x>xmax_crop] = np.nan
+        y[x>xmax_crop] = np.nan
+
+    # shift cropped version to 0 again
+    x = x - np.nanmin(x)
+    y = y - np.nanmin(y)
+
+    # scale image up to the size of the canvas + additional scaling
+    x = x * (canvas_x + w) / np.nanmax(x)
+    y = y * (canvas_y + h) / np.nanmax(y)
 
     # shift all points
     x = x + shift_w
     y = y - shift_h
 
-    # define canvas center as rotation center
+    """# define canvas center as rotation center
     hx = canvas_x/2
     hy = canvas_y/2
 
     # perform rotation around center
     x = x - hx
     y = y - hy
+
+    x = x.reshape(1,-1)
+    y = y.reshape(1,-1)
 
     M = np.array([[np.cos(angle), -np.sin(angle)],[np.sin(angle), np.cos(angle)]])
     xy = M@np.concatenate((x,y), axis=0)
@@ -139,7 +153,7 @@ for data_file in os.listdir(cell_data_dir):
     y = xy[1,:]
 
     x = x + hx
-    y = y + hy
+    y = y + hy"""
 
     # crop cells outside of image
     y[x<0] = np.nan
@@ -167,8 +181,8 @@ for data_file in os.listdir(cell_data_dir):
 
     # save transformed files if argument is specified
     if argument.save_files:
-        cell_data.loc[:, 'Cell X Position'] = x
-        cell_data.loc[:, 'Cell Y Position'] = y
+        cell_data.loc[:, 'Centroid X µm'] = x
+        cell_data.loc[:, 'Centroid Y µm'] = y
         cell_data.to_csv(cell_data_new_dir + "/" + data_file)
 
 if not_found > 0:

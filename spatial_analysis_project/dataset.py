@@ -1,3 +1,5 @@
+import kaplanmeier
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import os
@@ -34,6 +36,9 @@ class Dataset:
             except ValueError:
                 print("Core " + core.name + " not found in patient information csv file")
 
+        self.patient_months = np.array(self.patient_months)
+        self.patient_status = np.array(self.patient_status)
+
     # Calculate expression of given biomarkers for all cores
     def biomarker(self, *args):
         for arg in args:
@@ -51,16 +56,16 @@ class Dataset:
                 print("Biomarker " + arg + " not defined!")
     
     # Calculate Kaplan-Meier survival curve for given biomarkers
-    def kaplan_maier(self, *args):
+    def kaplan_meier(self, *args):
         for arg in args:
             try:
-                biomarker_values = self.biomarkers[arg]
+                biomarker_values = np.array(self.biomarkers[arg])
 
             except KeyError:
                 print("Biomarker " + arg + " not defined or not calculated yet!")
-
-if __name__ == "__main__":
-    a = Dataset('./M06/Sample Texts/')
-    a.load_patient_from_csv('./Patient_Prognostic_Information_v2.csv')
-    a.biomarker("cell_type_fraction")
-    print(a.biomarkers)
+                continue
+            
+            biomarker_mean = np.mean(biomarker_values)
+            group0 = biomarker_values > biomarker_mean
+            results = kaplanmeier.fit(self.patient_months, self.patient_status, group0)
+            kaplanmeier.plot(results, savepath="./"+arg+"_kaplan_meier.png", title="Kaplan-Meier curve for {} \n Log-rank p-value = {:.4f}".format(arg, results['logrank_P']))

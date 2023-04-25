@@ -38,8 +38,8 @@ class Core:
         
         # Set patient information
         self.patient_id = df.loc[df["Core ID"] == self.name]["Patient ID"].values[0]
-        self.patient_months = df.loc[df["Core ID"] == self.name]["OS(Months)"].values[0]
-        self.patient_status = df.loc[df["Core ID"] == self.name]["Status"].values[0]
+        self.patient_months = int(df.loc[df["Core ID"] == self.name]["OS(Months)"].values[0])
+        self.patient_status = bool(df.loc[df["Core ID"] == self.name]["Status"].values[0])
 
     ### Patient information setters ###
     def set_patient_id(self, patient_id):
@@ -64,11 +64,3 @@ class Core:
     def cell_type_density(self):
         for cell_type in self.cell_types_set:
             self.biomarkers[cell_type + "_density_mu^2"] = self.cell_type_number[cell_type] / self.area
-        
-if __name__ == "__main__":
-    a = Core()
-    a.load_from_csv('./M06/Predicted Texts/A-1.csv')
-    a.load_patient_from_csv('./Patient_Prognostic_Information_v2.csv')
-    a.cell_type_fraction()
-    a.cell_type_density()
-    print(a.biomarkers)
