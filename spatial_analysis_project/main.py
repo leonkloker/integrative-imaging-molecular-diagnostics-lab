@@ -1,7 +1,10 @@
 from core import Core
 from dataset import Dataset
 
-a = Dataset('./M06/Predicted Texts/')
-a.load_patient_from_csv('./Patient_Prognostic_Information_v2.csv')
-a.biomarker("cell_type_fraction")
-a.kaplan_meier("Tumor_fraction")
+ds = Dataset('./M06/Predicted Texts/')
+ds.load_patient_from_csv('./Patient_Prognostic_Information_v2.csv')
+ds.calculate_biomarker()
+ds.log_rank_test()
+print(ds.log_rank_p)
+ds.kaplan_meier("Neutrophil_density_mu^2")
+
