@@ -5,6 +5,7 @@ import pandas as pd
 import os
 
 from core import Core
+from tqdm import tqdm
 
 class Dataset:
     def __init__(self, directory=None):
@@ -64,10 +65,10 @@ class Dataset:
                     biomarkers.append(method)
 
         for biomarker in biomarkers:
+            print("Calculating biomarker " + biomarker)
             try:
-                for i, core in enumerate(self.cores):
-                    biomarker_dic = getattr(core, biomarker)()
-            
+                for i in tqdm(range(len(self.cores))):
+                    biomarker_dic = getattr(self.cores[i], biomarker)()
                     for marker in biomarker_dic.keys():
                         if i == 0:
                             self.biomarkers[marker] = [biomarker_dic[marker]]
@@ -87,8 +88,8 @@ class Dataset:
                 print("Biomarker " + biomarker + " not defined or not calculated yet!")
                 continue
             
-            biomarker_mean = np.mean(biomarker_values)
-            group0 = biomarker_values > biomarker_mean
+            biomarker_median = np.nanmedian(biomarker_values)
+            group0 = biomarker_values > biomarker_median
             results = kaplanmeier.fit(self.patient_months, self.patient_status, group0)
             kaplanmeier.plot(results, savepath="./kaplan_meier/"+biomarker+"_kaplan_meier.png", title="Kaplan-Meier curve for {} \n Log-rank p-value = {:.4f}".format(biomarker, results['logrank_P']))
 
@@ -105,8 +106,8 @@ class Dataset:
                 print("Biomarker " + biomarker + " not defined or not calculated yet!")
                 continue
                 
-            biomarker_mean = np.nanmean(biomarker_values)
-            group0 = biomarker_values > biomarker_mean
+            biomarker_median = np.nanmedian(biomarker_values)
+            group0 = biomarker_values > biomarker_median
 
             results = kaplanmeier.fit(self.patient_months, self.patient_status, group0)
             self.log_rank_p[biomarker] = results['logrank_P']

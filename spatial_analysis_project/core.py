@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import os
 
+from scipy.spatial import distance_matrix
+
 class Core:
     def __init__(self, csv_file=None):
         if csv_file is not None:
@@ -43,6 +45,10 @@ class Core:
         self.patient_months = int(df.loc[df["Core ID"] == self.name]["OS(Months)"].values[0])
         self.patient_status = bool(df.loc[df["Core ID"] == self.name]["Status"].values[0])
 
+    # Calculate the distances between each of the cells in the core
+    def calculate_cell_distances_(self):
+        self.cell_distances = distance_matrix(self.cell_coordinates, self.cell_coordinates)
+
     ##################
     ### Biomarkers ###
     ##################
@@ -65,4 +71,46 @@ class Core:
         for cell_type in self.cell_types_set:
             self.biomarkers[cell_type + "_average_area_px^2"] = np.mean(self.cell_areas[self.cell_types == self.cell_types_dic[cell_type]])
             returns[cell_type + "_average_area_px^2"] = self.biomarkers[cell_type + "_average_area_px^2"]
+        return returns
+    
+    def neighbouring_cell_type_fraction_distance_cutoff(self, radius=50):
+        returns = {}
+
+        if hasattr(self, "cell_distances") == False:
+            self.calculate_cell_distances_()
+
+        for cell_type in self.cell_types_set:
+            mask = self.cell_types == self.cell_types_dic[cell_type]
+            distances = self.cell_distances[mask, :]
+            close_cells_idx = np.logical_and(distances < radius, distances > 0)
+            counts = np.zeros(len(self.cell_types_set))
+
+            for i in range(close_cells_idx.shape[0]):
+                close_cells = self.cell_types[close_cells_idx[i,:]]
+                counts += np.histogram(close_cells, bins=np.arange(len(self.cell_types_set)+1))[0]
+
+            for i in range(counts.shape[0]):
+                self.biomarkers["Fraction of " + self.cell_types_set[i] + " cells within " + str(radius) + "mu of " + cell_type] = counts[i] / np.sum(close_cells_idx)
+                returns["Fraction of " + self.cell_types_set[i] + " cells within " + str(radius) + "mu of " + cell_type] = counts[i] / np.sum(close_cells_idx)
+        return returns
+    
+    def neighbouring_cell_type_fraction_amount_cutoff(self, k=10):
+        returns = {}
+
+        if hasattr(self, "cell_distances") == False:
+            self.calculate_cell_distances_()
+        
+        for cell_type in self.cell_types_set:
+            mask = self.cell_types == self.cell_types_dic[cell_type]
+            distances = self.cell_distances[mask, :]
+            close_cells_idx = np.argpartition(distances, k, axis=1)[:, :k]
+            counts = np.zeros(len(self.cell_types_set))
+
+            for i in range(close_cells_idx.shape[0]):
+                close_cells = self.cell_types[close_cells_idx[i,:]]
+                counts += np.histogram(close_cells, bins=np.arange(len(self.cell_types_set)+1))[0]
+
+            for i in range(counts.shape[0]):
+                self.biomarkers["Fraction of " + self.cell_types_set[i] + " among " + str(k) + " closest cells next to " + cell_type] = counts[i] / (np.sum(mask)*k)
+                returns["Fraction of " + self.cell_types_set[i] + " among " + str(k) + " closest cells next to " + cell_type] = counts[i] / (np.sum(mask)*k)
         return returns
