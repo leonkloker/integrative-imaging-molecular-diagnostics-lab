@@ -6,5 +6,4 @@ ds.load_patient_from_csv('./Patient_Prognostic_Information_v2.csv')
 ds.calculate_biomarker()
 ds.log_rank_test()
 print(ds.log_rank_p)
-ds.kaplan_meier("Neutrophil_density_mu^2")
-
+ds.kaplan_meier("Lymphocyte_average_area_px^2")
