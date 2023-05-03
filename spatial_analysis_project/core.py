@@ -15,7 +15,7 @@ class Core:
 
         # Name of core and cell coordinates
         self.name = os.path.basename(csv_file).split(".")[0]
-        self.cell_coordinates = self.df.loc[:, ["Centroid X px", "Centroid Y px"]].values
+        self.cell_coordinates = self.df.loc[:, ["Centroid X px", "Centroid Y px"]].values / 0.497
         self.cell_areas = self.df.loc[:, ["Area px^2"]].values
 
         self.area = 0.2749**2 * np.pi * np.prod(np.max(self.cell_coordinates, axis=0) - np.min(self.cell_coordinates, axis=0))/4
@@ -48,10 +48,14 @@ class Core:
     # Calculate the distances between each of the cells in the core
     def calculate_cell_distances_(self):
         self.cell_distances = distance_matrix(self.cell_coordinates, self.cell_coordinates)
+        self.cell_distances[self.cell_distances==0] = np.inf
 
     ##################
     ### Biomarkers ###
     ##################
+
+    # Fraction of cells of a certain type in the core
+    # One value for each cell type
     def cell_type_fraction(self):
         returns = {}
         for cell_type in self.cell_types_set:
@@ -59,6 +63,8 @@ class Core:
             returns[cell_type + "_fraction"] = self.biomarkers[cell_type + "_fraction"]
         return returns
 
+    # Area density of cells of a certain type in the core
+    # One value for each cell type
     def cell_type_density(self):
         returns = {}
         for cell_type in self.cell_types_set:
@@ -66,6 +72,8 @@ class Core:
             returns[cell_type + "_density_mu^2"] = self.biomarkers[cell_type + "_density_mu^2"]
         return returns
     
+    # Average area of cells of a certain type in the core
+    # One value for each cell type
     def average_cell_area(self):
         returns = {}
         for cell_type in self.cell_types_set:
@@ -73,6 +81,9 @@ class Core:
             returns[cell_type + "_average_area_px^2"] = self.biomarkers[cell_type + "_average_area_px^2"]
         return returns
     
+    # For every cell of Type1, find all cells that are within radius
+    # then, among those cells, calculate the average fraction of cells of Type2
+    # One value for each possible combination of Type1-Type2
     def neighbouring_cell_type_fraction_distance_cutoff(self, radius=50):
         returns = {}
 
@@ -94,6 +105,9 @@ class Core:
                 returns["Fraction of " + self.cell_types_set[i] + " cells within " + str(radius) + "mu of " + cell_type] = counts[i] / np.sum(close_cells_idx)
         return returns
     
+    # For every cell of Type1, find the k closest cells
+    # then, among those cells, calculate the average fraction of cells of Type2
+    # One value for each possible combination of Type1-Type2
     def neighbouring_cell_type_fraction_amount_cutoff(self, k=10):
         returns = {}
 
@@ -113,4 +127,44 @@ class Core:
             for i in range(counts.shape[0]):
                 self.biomarkers["Fraction of " + self.cell_types_set[i] + " among " + str(k) + " closest cells next to " + cell_type] = counts[i] / (np.sum(mask)*k)
                 returns["Fraction of " + self.cell_types_set[i] + " among " + str(k) + " closest cells next to " + cell_type] = counts[i] / (np.sum(mask)*k)
+        return returns
+    
+    # Average amount of cells of any type, that are within radius distance of
+    # a cell of a certain type
+    # One value for each cell type
+    def amount_of_cells_window(self, radius=50):
+        returns = {}
+
+        if hasattr(self, "cell_distances") == False:
+            self.calculate_cell_distances_()
+
+        for cell_type in self.cell_types_set:
+            mask = self.cell_types == self.cell_types_dic[cell_type]
+            distances = self.cell_distances[mask, :]
+            close_cells_idx = np.logical_and(distances < radius, distances > 0)
+            self.biomarkers["Average amount of cells within " + str(radius) + " around " + cell_type] = np.sum(close_cells_idx) / np.sum(mask)
+            returns["Average amount of cells within " + str(radius) + " around " + cell_type] = np.sum(close_cells_idx) / np.sum(mask)
+        return returns
+
+    # For every cell of Type1, find the closest cell of Type2
+    # then, calculate the average of all these distances
+    # One value for each possible combination of Type1-Type2
+    def smallest_distance_to_other_types(self):
+        returns = {}
+
+        if hasattr(self, "cell_distances") == False:
+            self.calculate_cell_distances_()
+        
+        for type1 in self.cell_types_set:
+            for type2 in self.cell_types_set:
+                mask1 = self.cell_types == self.cell_types_dic[type1]
+                mask2 = self.cell_types == self.cell_types_dic[type2]
+                distances = self.cell_distances[mask1, :]
+                distances = distances[:, mask2]
+                if distances.size == 0:
+                    dist = np.nan
+                else:
+                    dist = np.mean(np.min(distances, axis=1))
+                self.biomarkers["Average smallest distance from " + type1 + " to " + type2] = dist
+                returns["Average smallest distance from " + type1 + " to " + type2] = dist
         return returns
