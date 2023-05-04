@@ -12,6 +12,7 @@ class Dataset:
         if directory is not None:
             self.load_from_directory(directory)
         self.biomarkers = {}
+        self.biomarkers_mean = {}
         self.log_rank_p = {}
 
     # Synchronize cell types over all cores
@@ -30,6 +31,7 @@ class Dataset:
 
     # Load all cores from directory
     def load_from_directory(self, directory):
+        print("Loading cores from directory " + directory + " ...")
         self.cores = []
         for filename in os.listdir(directory):
             if filename.endswith(".csv"):
@@ -55,6 +57,11 @@ class Dataset:
 
         self.patient_months = np.array(self.patient_months)
         self.patient_status = np.array(self.patient_status)
+
+    # Calculate mean expression of all calculated biomarkers for all cores
+    def calculate_biomarker_mean(self):
+        for biomarker in self.biomarkers.keys():
+            self.biomarkers_mean[biomarker] = np.nanmean(self.biomarkers[biomarker])
 
     # Calculate expression of given biomarkers for all cores
     def calculate_biomarker(self, *biomarkers):
