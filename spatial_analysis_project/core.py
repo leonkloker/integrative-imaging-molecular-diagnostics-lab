@@ -87,7 +87,7 @@ class Core:
     # 2) For every cell of Type1, find all cells that are within radius
     # then, count all these cells
     # One value for each type 
-    def fraction_neighbouring_cell_type_distance_cutoff(self, radius=50):
+    def neighbouring_cell_type_distance_cutoff(self, radius=50):
         returns = {}
 
         if hasattr(self, "cell_distances") == False:
@@ -114,7 +114,7 @@ class Core:
     # For every cell of Type1, find the k closest cells
     # then, among those cells, calculate the average fraction of cells of Type2
     # One value for each possible combination of Type1-Type2
-    def fraction_neighbouring_cell_type_amount_cutoff(self, k=10):
+    def neighbouring_cell_type_amount_cutoff(self, k=10):
         returns = {}
 
         if hasattr(self, "cell_distances") == False:
@@ -157,4 +157,3 @@ class Core:
                 self.biomarkers["Average smallest distance from " + type1 + " to " + type2] = dist
                 returns["Average smallest distance from " + type1 + " to " + type2] = dist
         return returns
-    

@@ -2,9 +2,11 @@ import kaplanmeier
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+import pickle
 import os
 
 from core import Core
+from natsort import natsorted
 from tqdm import tqdm
 
 class Dataset:
@@ -33,10 +35,12 @@ class Dataset:
     def load_from_directory(self, directory):
         print("Loading cores from directory " + directory + " ...")
         self.cores = []
-        for filename in os.listdir(directory):
+        self.cores_name = []
+        for filename in natsorted(os.listdir(directory)):
             if filename.endswith(".csv"):
                 core = Core(os.path.join(directory, filename))
                 self.cores.append(core)
+                self.cores_name.append(core.name)
         self.sync_cell_types()
 
     # Load patient information from csv file
@@ -115,6 +119,32 @@ class Dataset:
                 
             biomarker_median = np.nanmedian(biomarker_values)
             group0 = biomarker_values > biomarker_median
+            results_median = kaplanmeier.fit(self.patient_months, self.patient_status, group0)
+            self.log_rank_p[biomarker] = [results_median['logrank_P']]
 
-            results = kaplanmeier.fit(self.patient_months, self.patient_status, group0)
-            self.log_rank_p[biomarker] = results['logrank_P']
+            biomarker_mean = np.nanmean(biomarker_values)
+            group0 = biomarker_values > biomarker_mean
+            results_median = kaplanmeier.fit(self.patient_months, self.patient_status, group0)
+            self.log_rank_p[biomarker].append(results_median['logrank_P'])
+    
+    # Save dataset to pickle file
+    def save(self, filename=""):
+        if filename == "":
+            filename = "dataset.pkl"
+        data = [self.biomarkers, self.biomarkers_mean, self.log_rank_p, self.cores_name]
+        with open(filename, "wb") as f:
+            pickle.dump(data, f)
+
+        
+    # Load dataset from pickle file
+    def load(self, filename=""):
+        if filename == "":
+            filename = "dataset.pkl"
+        with open(filename, "rb") as f:
+            data = pickle.load(f)
+        
+        self.biomarkers = data[0]
+        self.biomarkers_mean = data[1]
+        self.log_rank_p = data[2]
+        self.cores_name = data[3]
+
