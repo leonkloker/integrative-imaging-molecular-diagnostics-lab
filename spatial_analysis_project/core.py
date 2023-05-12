@@ -116,7 +116,7 @@ class Core:
     # For every cell of Type1, find the k closest cells
     # then, among those cells, calculate the average fraction of cells of Type2
     # One value for each possible combination of Type1-Type2
-    def neighbouring_cell_type_amount_cutoff(self, k=10):
+    def neighbouring_cell_type_amount_cutoff(self, k=50):
         returns = {}
 
         if hasattr(self, "cell_distances") == False:
@@ -160,36 +160,38 @@ class Core:
                 returns["Average smallest distance from " + type1 + " to " + type2] = dist
         return returns
 
-    def g_function_bio(self):
+    # For every cell of Type1, find the closest cell of Type2
+    # then, calculate the cumulative distribution of all these distances (i.e. G function)
+    # then, Calculate the difference between the empirical G function and the theoretical G function
+    # One value for each possible combination of Type1-Type2
+    def g_function(self):
         returns = {}
+
         if hasattr(self, "cell_distances") == False:
             self.calculate_cell_distances_()
+
         if not "Lymphocyte_density_mu^2" in self.biomarkers.keys():
             self.density_cell_type()
 
-        for cell_type in self.cell_types_set:
-            mask = self.cell_types == self.cell_types_dic[cell_type]
-            distances = self.cell_distances[mask, :]
-            distances = distances[:, mask]
+        for type1 in self.cell_types_set:
+            for type2 in self.cell_types_set:
+                mask1 = self.cell_types == self.cell_types_dic[type1]
+                mask2 = self.cell_types == self.cell_types_dic[type2]
+                distances = self.cell_distances[mask1, :]
+                distances = distances[:, mask2]
 
-            if distances.size == 0:
-                self.biomarkers["G-function difference for " + cell_type] = np.nan
-                returns["G-function difference for " + cell_type] = np.nan
-                continue
+                if distances.size == 0:
+                    self.biomarkers["G-function for " + type1 + " to " + type2] = np.nan
+                    returns["G-function for " + type1 + " to " + type2] = np.nan
+                    continue
 
-            distances = np.min(distances, axis=1)
-            distances = np.sort(distances)
-            max_radius = np.max(distances)
+                distances = np.min(distances, axis=1)
+                distances = np.sort(distances)        
+                radius = np.linspace(0, 200, 100).reshape(-1, 1)
+                g_function_emp = np.sum(distances < radius + 12.5, axis=1) / np.sum(mask1)
+                g_function_theo = 1 - np.exp(-np.pi * radius**2 * (self.biomarkers[type2 + "_density_mu^2"]))
+                g_diff = np.sum(g_function_theo - g_function_emp) / radius.shape[0]
+                self.biomarkers["G-function for " + type1 + " to " + type2] = g_diff
+                returns["G-function for " + type1 + " to " + type2] = g_diff
 
-            if max_radius == np.inf:
-                self.biomarkers["G-function difference for " + cell_type] = np.nan
-                returns["G-function difference for " + cell_type] = np.nan
-                continue
-            
-            radius = np.linspace(0, max_radius, 100).reshape(-1, 1)
-            g_function_emp = np.sum(distances < radius, axis=1) / np.sum(mask)
-            g_function_theo = 1 - np.exp(-np.pi * radius**2 * (self.biomarkers[cell_type + "_density_mu^2"]))
-            g_diff = np.sum(g_function_theo - g_function_emp) / radius.shape[0]
-            self.biomarkers["G-function difference for " + cell_type] = g_diff
-            returns["G-function difference for " + cell_type] = g_diff
         return returns

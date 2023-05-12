@@ -4,19 +4,27 @@ import numpy as np
 import pandas as pd
 import pickle
 import os
+import warnings
+warnings.filterwarnings("ignore")
 
 from core import Core
+from lifelines import CoxPHFitter
 from natsort import natsorted
 from tqdm import tqdm
 
 class Dataset:
     def __init__(self, directory=None):
-        if directory is not None:
-            self.load_from_directory(directory)
         self.biomarkers = {}
         self.biomarkers_mean = {}
         self.biomarker_best_cutoff = {}
         self.log_rank_p = {}
+        self.cox_p = {}
+        self.patient_months = []
+        self.patient_status = []
+        self.cores = []
+        self.cores_name = []
+        if directory is not None:
+            self.load_from_directory(directory)
 
     # Synchronize cell types over all cores
     def sync_cell_types(self):
@@ -35,8 +43,6 @@ class Dataset:
     # Load all cores from directory
     def load_from_directory(self, directory):
         print("Loading cores from directory " + directory + " ...")
-        self.cores = []
-        self.cores_name = []
         for filename in natsorted(os.listdir(directory)):
             if filename.endswith(".csv"):
                 core = Core(os.path.join(directory, filename))
@@ -47,8 +53,6 @@ class Dataset:
     # Load patient information from csv file
     def load_patient_from_csv(self, csv_file):
         df = pd.read_csv(csv_file)
-        self.patient_months = []
-        self.patient_status = []
 
         # Check if core is contained in csv file
         for core in self.cores:
@@ -88,7 +92,7 @@ class Dataset:
                             self.biomarkers[marker].append(biomarker_dic[marker])
 
             except AttributeError:
-                print("Biomarker " + biomarker + " not defined!")
+                print("Can't calculate biomarker " + biomarker + " as it is not defined!")
 
     # Calculate Kaplan-Meier survival curve for given biomarkers
     def kaplan_meier(self, *biomarkers):
@@ -140,12 +144,39 @@ class Dataset:
             if not np.isnan(log_rank_p).all():
                 self.log_rank_p[biomarker].append(np.nanmin(log_rank_p))
                 self.biomarker_best_cutoff[biomarker] = cutoffs[np.nanargmin(log_rank_p)]
-    
+
+    # Calculate hazard ratio using univariate cox model for a given biomarker
+    def univariate_cox_model(self, *biomarkers):
+        if not biomarkers:
+            biomarkers = self.biomarkers.keys()
+        
+        for biomarker in biomarkers:
+            try:
+                biomarker_values = np.array(self.biomarkers[biomarker])
+
+            except KeyError:
+                print("Biomarker " + biomarker + " not defined or not calculated yet!")
+                continue
+
+            df = pd.DataFrame(biomarker_values, columns=["biomarker"])
+            df["months"] = self.patient_months
+            df["status"] = self.patient_status
+            cox = CoxPHFitter()
+            df.replace([np.inf, -np.inf], np.nan, inplace=True)
+            df = df.dropna()
+            if len(df) == 0:
+                continue
+            cox.fit(df[["months", "status", "biomarker"]], duration_col="months", event_col="status")
+            self.cox_p[biomarker] = cox.summary[["p"]].values[0][0]
+
+
     # Save dataset to pickle file
     def save(self, filename=""):
         if filename == "":
             filename = "dataset.pkl"
-        data = [self.biomarkers, self.biomarkers_mean, self.log_rank_p, self.cores_name]
+        data = [self.biomarkers, self.biomarkers_mean, self.log_rank_p, self.cores_name, 
+                self.patient_months, self.patient_status, self.biomarker_best_cutoff,
+                self.cox_p]
         with open(filename, "wb") as f:
             pickle.dump(data, f)
 
@@ -161,6 +192,10 @@ class Dataset:
         loaded_biomarkers_mean = data[1]
         loaded_log_rank_p = data[2]
         loaded_cores_name = data[3]
+        loaded_patient_months = data[4]
+        loaded_patient_status = data[5]
+        loaded_biomarker_best_cutoff = data[6]
+        #loaded_cox_p = data[7]
 
         for key, value in loaded_biomarkers.items():
             self.biomarkers[key] = value
@@ -168,5 +203,14 @@ class Dataset:
             self.biomarkers_mean[key] = value
         for key, value in loaded_log_rank_p.items():
             self.log_rank_p[key] = value
+        #for key, value in loaded_cox_p.items():
+        #    self.cox_p[key] = value
         if self.cores_name == []:
             self.cores_name = loaded_cores_name
+        if self.patient_months == []:
+            self.patient_months = loaded_patient_months
+        if self.patient_status == []:
+            self.patient_status = loaded_patient_status
+        for key, value in loaded_biomarker_best_cutoff.items():
+            self.biomarker_best_cutoff[key] = value
+
