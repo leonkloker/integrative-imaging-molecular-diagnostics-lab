@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import os
 
+import matplotlib.pyplot as plt
+
 from scipy.spatial import distance_matrix
 
 class Core:
@@ -82,7 +84,7 @@ class Core:
         return returns
     
     # 1) For every cell of Type1, find all cells that are within radius
-    # then, among those cells, calculate the average fraction of cells of Type2
+    # then, among those cells, calculate the average amount of cells of Type2
     # One value for each possible combination of Type1-Type2
     # 2) For every cell of Type1, find all cells that are within radius
     # then, count all these cells
@@ -107,8 +109,8 @@ class Core:
             returns["Average amount of cells within " + str(radius) + "mu around " + cell_type] = np.sum(counts) / np.sum(mask)
 
             for i in range(counts.shape[0]):
-                self.biomarkers["Fraction of " + self.cell_types_set[i] + " cells within " + str(radius) + "mu of " + cell_type] = counts[i] / np.sum(close_cells_idx)
-                returns["Fraction of " + self.cell_types_set[i] + " cells within " + str(radius) + "mu of " + cell_type] = counts[i] / np.sum(close_cells_idx)
+                self.biomarkers["Average amount of " + self.cell_types_set[i] + " cells within " + str(radius) + "mu of " + cell_type] = counts[i] / np.sum(mask)
+                returns["Average amount of " + self.cell_types_set[i] + " cells within " + str(radius) + "mu of " + cell_type] = counts[i] / np.sum(mask)
         return returns
     
     # For every cell of Type1, find the k closest cells
@@ -156,4 +158,38 @@ class Core:
                     dist = np.mean(np.min(distances, axis=1))
                 self.biomarkers["Average smallest distance from " + type1 + " to " + type2] = dist
                 returns["Average smallest distance from " + type1 + " to " + type2] = dist
+        return returns
+
+    def g_function_bio(self):
+        returns = {}
+        if hasattr(self, "cell_distances") == False:
+            self.calculate_cell_distances_()
+        if not "Lymphocyte_density_mu^2" in self.biomarkers.keys():
+            self.density_cell_type()
+
+        for cell_type in self.cell_types_set:
+            mask = self.cell_types == self.cell_types_dic[cell_type]
+            distances = self.cell_distances[mask, :]
+            distances = distances[:, mask]
+
+            if distances.size == 0:
+                self.biomarkers["G-function difference for " + cell_type] = np.nan
+                returns["G-function difference for " + cell_type] = np.nan
+                continue
+
+            distances = np.min(distances, axis=1)
+            distances = np.sort(distances)
+            max_radius = np.max(distances)
+
+            if max_radius == np.inf:
+                self.biomarkers["G-function difference for " + cell_type] = np.nan
+                returns["G-function difference for " + cell_type] = np.nan
+                continue
+            
+            radius = np.linspace(0, max_radius, 100).reshape(-1, 1)
+            g_function_emp = np.sum(distances < radius, axis=1) / np.sum(mask)
+            g_function_theo = 1 - np.exp(-np.pi * radius**2 * (self.biomarkers[cell_type + "_density_mu^2"]))
+            g_diff = np.sum(g_function_theo - g_function_emp) / radius.shape[0]
+            self.biomarkers["G-function difference for " + cell_type] = g_diff
+            returns["G-function difference for " + cell_type] = g_diff
         return returns

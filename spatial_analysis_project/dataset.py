@@ -15,6 +15,7 @@ class Dataset:
             self.load_from_directory(directory)
         self.biomarkers = {}
         self.biomarkers_mean = {}
+        self.biomarker_best_cutoff = {}
         self.log_rank_p = {}
 
     # Synchronize cell types over all cores
@@ -126,6 +127,19 @@ class Dataset:
             group0 = biomarker_values > biomarker_mean
             results_median = kaplanmeier.fit(self.patient_months, self.patient_status, group0)
             self.log_rank_p[biomarker].append(results_median['logrank_P'])
+
+            cutoffs = np.linspace(np.nanmin(biomarker_values), np.nanmax(biomarker_values), 20)
+            cutoffs = cutoffs[1:-1]
+            log_rank_p = []
+            for cutoff in cutoffs:
+                group0 = biomarker_values > cutoff
+                results = kaplanmeier.fit(self.patient_months, self.patient_status, group0)
+                log_rank_p.append(results['logrank_P'])
+
+            log_rank_p = np.array(log_rank_p)
+            if not np.isnan(log_rank_p).all():
+                self.log_rank_p[biomarker].append(np.nanmin(log_rank_p))
+                self.biomarker_best_cutoff[biomarker] = cutoffs[np.nanargmin(log_rank_p)]
     
     # Save dataset to pickle file
     def save(self, filename=""):
@@ -143,8 +157,16 @@ class Dataset:
         with open(filename, "rb") as f:
             data = pickle.load(f)
         
-        self.biomarkers = data[0]
-        self.biomarkers_mean = data[1]
-        self.log_rank_p = data[2]
-        self.cores_name = data[3]
+        loaded_biomarkers = data[0]
+        loaded_biomarkers_mean = data[1]
+        loaded_log_rank_p = data[2]
+        loaded_cores_name = data[3]
 
+        for key, value in loaded_biomarkers.items():
+            self.biomarkers[key] = value
+        for key, value in loaded_biomarkers_mean.items():
+            self.biomarkers_mean[key] = value
+        for key, value in loaded_log_rank_p.items():
+            self.log_rank_p[key] = value
+        if self.cores_name == []:
+            self.cores_name = loaded_cores_name

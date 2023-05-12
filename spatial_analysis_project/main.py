@@ -4,8 +4,8 @@ from pprint import pprint
 
 ds = Dataset('./M06/Predicted Texts/')
 ds.load_patient_from_csv('./Patient_Prognostic_Information_v2.csv')
-ds.calculate_biomarker()
+ds.load()
 ds.log_rank_test()
-ds.calculate_biomarker_mean()
 ds.save()
 pprint(ds.log_rank_p)
+pprint(ds.biomarker_best_cutoff)
