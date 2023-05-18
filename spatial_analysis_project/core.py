@@ -20,7 +20,7 @@ class Core:
         self.cell_coordinates = self.df.loc[:, ["Centroid X px", "Centroid Y px"]].values / 0.497
         self.cell_areas = self.df.loc[:, ["Area px^2"]].values
 
-        self.area = 0.2749**2 * np.pi * np.prod(np.max(self.cell_coordinates, axis=0) - np.min(self.cell_coordinates, axis=0))/4
+        self.area = np.pi * np.prod(np.max(self.cell_coordinates, axis=0) - np.min(self.cell_coordinates, axis=0))
     
         # Cell types and their integer encoding
         self.cell_types = self.df.loc[:, "Class Type"].values.tolist()
@@ -164,7 +164,7 @@ class Core:
     # then, calculate the cumulative distribution of all these distances (i.e. G function)
     # then, Calculate the difference between the empirical G function and the theoretical G function
     # One value for each possible combination of Type1-Type2
-    def g_function(self):
+    def g_function(self, plot=False):
         returns = {}
 
         if hasattr(self, "cell_distances") == False:
@@ -174,15 +174,30 @@ class Core:
             self.density_cell_type()
 
         for type1 in self.cell_types_set:
+            mask1 = self.cell_types == self.cell_types_dic[type1]
+            distances = self.cell_distances[mask1, :]
+
+            if distances.size == 0:
+                self.biomarkers["G-function L1 for " + type1] = np.nan
+                returns["G-function L1 for " + type1] = np.nan
+            else:
+                distances = np.min(distances, axis=1)
+                distances = np.sort(distances)        
+                radius = np.linspace(0, 200, 100).reshape(-1, 1)
+                g_function_emp = np.sum(distances < radius + 12.5, axis=1) / np.sum(mask1)
+                g_function_theo = 1 - np.exp(-np.pi * radius**2 * (self.cell_number / self.area))                
+                g_diff = np.sum(g_function_theo - g_function_emp) / radius.shape[0]
+                self.biomarkers["G-function L1 for " + type1] = g_diff
+                returns["G-function L1 for " + type1] = g_diff
+            
             for type2 in self.cell_types_set:
-                mask1 = self.cell_types == self.cell_types_dic[type1]
-                mask2 = self.cell_types == self.cell_types_dic[type2]
                 distances = self.cell_distances[mask1, :]
+                mask2 = self.cell_types == self.cell_types_dic[type2]
                 distances = distances[:, mask2]
 
                 if distances.size == 0:
-                    self.biomarkers["G-function for " + type1 + " to " + type2] = np.nan
-                    returns["G-function for " + type1 + " to " + type2] = np.nan
+                    self.biomarkers["G-function L1 for " + type1 + " to " + type2] = np.nan
+                    returns["G-function L1 for " + type1 + " to " + type2] = np.nan
                     continue
 
                 distances = np.min(distances, axis=1)
@@ -191,7 +206,81 @@ class Core:
                 g_function_emp = np.sum(distances < radius + 12.5, axis=1) / np.sum(mask1)
                 g_function_theo = 1 - np.exp(-np.pi * radius**2 * (self.biomarkers[type2 + "_density_mu^2"]))
                 g_diff = np.sum(g_function_theo - g_function_emp) / radius.shape[0]
-                self.biomarkers["G-function for " + type1 + " to " + type2] = g_diff
-                returns["G-function for " + type1 + " to " + type2] = g_diff
+                self.biomarkers["G-function L1 for " + type1 + " to " + type2] = g_diff
+                returns["G-function L1 for " + type1 + " to " + type2] = g_diff
+
+                if plot:
+                    if os.path.exists("./g_function") == False:
+                        os.mkdir("./g_function")
+                    plt.figure()
+                    plt.plot(radius, g_function_emp, label="Empirical")
+                    plt.plot(radius, g_function_theo, label="Theoretical")
+                    plt.xlabel("Radius (mu)")
+                    plt.ylabel("G-function")
+                    plt.title("G-function for " + type1 + " to " + type2)
+                    plt.legend()
+                    plt.savefig("./g_function/G_function_" + self.name + "_" + type1 + "_to_" + type2 + ".png")
 
         return returns
+    
+    # For every cell of Type1, find how many cells of Type2 are within a radius r
+    # then, normalize by the overall amount of cell of Type2 (i.e. K function)
+    # then, Calculate the difference between the empirical K function and the theoretical K function
+    # One value for each possible combination of Type1-Type2
+    """def k_function(self, plot=False):
+        returns = {}
+
+        if hasattr(self, "cell_distances") == False:
+            self.calculate_cell_distances_()
+
+        if not "Lymphocyte_density_mu^2" in self.biomarkers.keys():
+            self.density_cell_type()
+
+        for type1 in self.cell_types_set:
+            mask1 = self.cell_types == self.cell_types_dic[type1]
+            distances = self.cell_distances[mask1, :]
+
+            if distances.size == 0:
+                self.biomarkers["K-function L1 for " + type1 + " to " + type2] = np.nan
+                returns["K-function L1 for " + type1 + " to " + type2] = np.nan
+            else:
+                distances = distances.reshape(1, -1)
+                radius = np.linspace(0, 3000, 100).reshape(-1, 1)
+                k_function_emp = np.sum(distances < radius + 12.5, axis=1) / (distances.size)
+                k_function_theo = np.pi * radius**2 / self.area
+                g_diff = np.sum(k_function_theo - k_function_emp) / radius.shape[0]
+                self.biomarkers["K-function L1 for " + type1] = g_diff
+                returns["K-function L1 for " + type1] = g_diff
+            
+            for type2 in self.cell_types_set:
+                distances = self.cell_distances[mask1, :]
+                mask2 = self.cell_types == self.cell_types_dic[type2]
+                distances = distances[:, mask2]
+
+                if distances.size == 0:
+                    self.biomarkers["K-function L1 for " + type1 + " to " + type2] = np.nan
+                    returns["K-function L1 for " + type1 + " to " + type2] = np.nan
+                    continue
+                
+                distances = distances.reshape(1, -1)
+                radius = np.linspace(0, 3000, 100).reshape(-1, 1)
+                k_function_emp = np.sum(distances < radius + 12.5, axis=1) / (distances.size)
+                k_function_theo = np.pi * radius**2 / self.cell_types_number[type2]
+                g_diff = np.sum(k_function_theo - k_function_emp) / radius.shape[0]
+                self.biomarkers["K-function L1 for " + type1 + " to " + type2] = g_diff
+                returns["K-function L1 for " + type1 + " to " + type2] = g_diff
+
+                if plot:
+                    if os.path.exists("./k_function") == False:
+                        os.mkdir("./k_function")
+                    plt.figure()
+                    plt.plot(radius, k_function_emp, label="Empirical")
+                    plt.plot(radius, k_function_theo, label="Theoretical")
+                    plt.xlabel("Radius (mu)")
+                    plt.ylabel("K-function")
+                    plt.title("K-function for " + type1 + " to " + type2)
+                    plt.legend()
+                    plt.show()
+                    plt.savefig("./k_function/K_function_" + self.name + "_" + type1 + "_to_" + type2 + ".png")
+
+        return returns"""

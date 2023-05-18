@@ -68,12 +68,12 @@ for data_file in os.listdir(cell_data_dir):
 
     # load core to get original size and to visualize coregistration if flag -i specified,
     # directory might need to be adjusted
-    src = cv.imread('TMA_cores_new/Cores/'+file_name+'.png')
+    src = cv.imread('../TMA_cores_M06_M07_panels/M07/Cores/'+file_name+'.png')
     
     # load original x, y coordinates from file,
     # names of columns of coordinates might need to be adjusted
-    x = np.array(cell_data.loc[:,'Centroid X µm']).reshape((-1,))
-    y = np.array(cell_data.loc[:,'Centroid Y µm']).reshape((-1,))
+    x = np.array(cell_data.loc[:,'Cell X Position']).reshape((1,-1))
+    y = np.array(cell_data.loc[:,'Cell Y Position']).reshape((1,-1))
 
     #################################
     ### Coordinate Transformation ###
@@ -83,7 +83,7 @@ for data_file in os.listdir(cell_data_dir):
     x = x - np.min(x)
     y = y - np.min(y)
 
-    """# define center of cells as rotation center
+    # define center of cells as rotation center
     hx = np.max(x)/2
     hy = np.max(y)/2
 
@@ -102,18 +102,19 @@ for data_file in os.listdir(cell_data_dir):
 
     # reset origin
     x = x - np.min(x)
-    y = y - np.min(y)"""
+    y = y - np.min(y)
 
     # define size of the underlying canvas
     canvas_x = src.shape[1]
     canvas_y = src.shape[0]
 
-    # transform micrometer to pixel 
-    x = x / 0.497
-    y = y / 0.497
-
     # if erosion in OpenCV was performed, crop cells outside of image
     if ymin_crop != np.nan:
+
+        # transform micrometer to pixel 
+        x = x / 0.497
+        y = y / 0.497
+
         x[y<ymin_crop] = np.nan
         y[y<ymin_crop] = np.nan
         x[y>ymax_crop] = np.nan
@@ -123,9 +124,9 @@ for data_file in os.listdir(cell_data_dir):
         x[x>xmax_crop] = np.nan
         y[x>xmax_crop] = np.nan
 
-    # shift cropped version to 0 again
-    x = x - np.nanmin(x)
-    y = y - np.nanmin(y)
+        # shift cropped version to 0 again
+        x = x - np.nanmin(x)
+        y = y - np.nanmin(y)
 
     # scale image up to the size of the canvas + additional scaling
     x = x * (canvas_x + w) / np.nanmax(x)
@@ -135,7 +136,7 @@ for data_file in os.listdir(cell_data_dir):
     x = x + shift_w
     y = y - shift_h
 
-    """# define canvas center as rotation center
+    # define canvas center as rotation center
     hx = canvas_x/2
     hy = canvas_y/2
 
@@ -153,7 +154,7 @@ for data_file in os.listdir(cell_data_dir):
     y = xy[1,:]
 
     x = x + hx
-    y = y + hy"""
+    y = y + hy
 
     # crop cells outside of image
     y[x<0] = np.nan
@@ -181,8 +182,8 @@ for data_file in os.listdir(cell_data_dir):
 
     # save transformed files if argument is specified
     if argument.save_files:
-        cell_data.loc[:, 'Centroid X µm'] = x
-        cell_data.loc[:, 'Centroid Y µm'] = y
+        cell_data.loc[:, 'Cell X Position'] = x
+        cell_data.loc[:, 'Cell Y Position'] = y
         cell_data.to_csv(cell_data_new_dir + "/" + data_file)
 
 if not_found > 0:

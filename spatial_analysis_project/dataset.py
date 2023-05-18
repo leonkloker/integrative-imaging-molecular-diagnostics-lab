@@ -121,6 +121,10 @@ class Dataset:
             except KeyError:
                 print("Biomarker " + biomarker + " not defined or not calculated yet!")
                 continue
+
+            if biomarker_values.size != len(self.patient_months):
+                print("Biomarker " + biomarker + " has not the same number of patients as the patient information!")
+                continue
                 
             biomarker_median = np.nanmedian(biomarker_values)
             group0 = biomarker_values > biomarker_median
@@ -157,7 +161,11 @@ class Dataset:
             except KeyError:
                 print("Biomarker " + biomarker + " not defined or not calculated yet!")
                 continue
-
+            
+            if biomarker_values.size != len(self.patient_months):
+                print("Biomarker " + biomarker + " has not the same number of patients as the patient information!")
+                continue
+            
             df = pd.DataFrame(biomarker_values, columns=["biomarker"])
             df["months"] = self.patient_months
             df["status"] = self.patient_status
@@ -195,7 +203,7 @@ class Dataset:
         loaded_patient_months = data[4]
         loaded_patient_status = data[5]
         loaded_biomarker_best_cutoff = data[6]
-        #loaded_cox_p = data[7]
+        loaded_cox_p = data[7]
 
         for key, value in loaded_biomarkers.items():
             self.biomarkers[key] = value
@@ -203,8 +211,8 @@ class Dataset:
             self.biomarkers_mean[key] = value
         for key, value in loaded_log_rank_p.items():
             self.log_rank_p[key] = value
-        #for key, value in loaded_cox_p.items():
-        #    self.cox_p[key] = value
+        for key, value in loaded_cox_p.items():
+            self.cox_p[key] = value
         if self.cores_name == []:
             self.cores_name = loaded_cores_name
         if self.patient_months == []:
