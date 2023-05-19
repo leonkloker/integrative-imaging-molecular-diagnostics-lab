@@ -227,7 +227,7 @@ class Core:
     # then, normalize by the overall amount of cell of Type2 (i.e. K function)
     # then, Calculate the difference between the empirical K function and the theoretical K function
     # One value for each possible combination of Type1-Type2
-    """def k_function(self, plot=False):
+    def k_function(self, plot=False):
         returns = {}
 
         if hasattr(self, "cell_distances") == False:
@@ -241,16 +241,16 @@ class Core:
             distances = self.cell_distances[mask1, :]
 
             if distances.size == 0:
-                self.biomarkers["K-function L1 for " + type1 + " to " + type2] = np.nan
-                returns["K-function L1 for " + type1 + " to " + type2] = np.nan
+                self.biomarkers["K-function L1 for " + type1] = np.nan
+                returns["K-function L1 for " + type1] = np.nan
             else:
                 distances = distances.reshape(1, -1)
-                radius = np.linspace(0, 3000, 100).reshape(-1, 1)
-                k_function_emp = np.sum(distances < radius + 12.5, axis=1) / (distances.size)
-                k_function_theo = np.pi * radius**2 / self.area
-                g_diff = np.sum(k_function_theo - k_function_emp) / radius.shape[0]
-                self.biomarkers["K-function L1 for " + type1] = g_diff
-                returns["K-function L1 for " + type1] = g_diff
+                radius = np.linspace(0, 6000, 100).reshape(-1, 1)
+                k_function_emp = np.sum(distances < radius + 12.5, axis=1) / np.sum(mask1)
+                k_function_theo = np.pi * radius**2 * (self.cell_number - self.cell_types_number[type1]) / self.area
+                k_diff = np.sum(k_function_theo - k_function_emp) / radius.shape[0]
+                self.biomarkers["K-function L1 for " + type1] = k_diff
+                returns["K-function L1 for " + type1] = k_diff
             
             for type2 in self.cell_types_set:
                 distances = self.cell_distances[mask1, :]
@@ -263,12 +263,12 @@ class Core:
                     continue
                 
                 distances = distances.reshape(1, -1)
-                radius = np.linspace(0, 3000, 100).reshape(-1, 1)
-                k_function_emp = np.sum(distances < radius + 12.5, axis=1) / (distances.size)
-                k_function_theo = np.pi * radius**2 / self.cell_types_number[type2]
-                g_diff = np.sum(k_function_theo - k_function_emp) / radius.shape[0]
-                self.biomarkers["K-function L1 for " + type1 + " to " + type2] = g_diff
-                returns["K-function L1 for " + type1 + " to " + type2] = g_diff
+                radius = np.linspace(0, 6000, 100).reshape(-1, 1)
+                k_function_emp = np.sum(distances < radius + 12.5, axis=1) / np.sum(mask1)
+                k_function_theo = np.pi * radius**2 * self.biomarkers[type2 + "_density_mu^2"]
+                k_diff = np.sum(k_function_theo - k_function_emp) / radius.shape[0]
+                self.biomarkers["K-function L1 for " + type1 + " to " + type2] = k_diff
+                returns["K-function L1 for " + type1 + " to " + type2] = k_diff
 
                 if plot:
                     if os.path.exists("./k_function") == False:
@@ -283,4 +283,4 @@ class Core:
                     plt.show()
                     plt.savefig("./k_function/K_function_" + self.name + "_" + type1 + "_to_" + type2 + ".png")
 
-        return returns"""
+        return returns
