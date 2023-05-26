@@ -10,6 +10,7 @@ warnings.filterwarnings("ignore")
 from core import Core
 from lifelines import CoxPHFitter
 from natsort import natsorted
+from sklearn import tree
 from tqdm import tqdm
 
 class Dataset:
@@ -177,6 +178,16 @@ class Dataset:
             cox.fit(df[["months", "status", "biomarker"]], duration_col="months", event_col="status")
             self.cox_p[biomarker] = cox.summary[["p"]].values[0][0]
 
+    # Define decision tree
+    def decision_tree(self, *biomarkers):
+        if not biomarkers:
+            biomarkers = self.biomarkers.keys()
+        
+        dt = tree.DecisionTreeClassifier()
+        features = []
+        for biomarker in biomarkers:
+            features.append(self.biomarkers[biomarker])
+        dt = dt.fit(features, self.patient_months)
 
     # Save dataset to pickle file
     def save(self, filename=""):
@@ -187,7 +198,6 @@ class Dataset:
                 self.cox_p]
         with open(filename, "wb") as f:
             pickle.dump(data, f)
-
         
     # Load dataset from pickle file
     def load(self, filename=""):

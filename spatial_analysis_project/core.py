@@ -5,6 +5,9 @@ import os
 import matplotlib.pyplot as plt
 
 from scipy.spatial import distance_matrix
+from scipy.stats import entropy
+from sklearn.cluster import KMeans
+from sklearn.metrics import silhouette_score
 
 class Core:
     def __init__(self, csv_file=None):
@@ -51,6 +54,33 @@ class Core:
     def calculate_cell_distances_(self):
         self.cell_distances = distance_matrix(self.cell_coordinates, self.cell_coordinates)
         self.cell_distances[self.cell_distances==0] = np.inf
+
+    # Calculate the cell type distribution of the k nearest neighbours 
+    # of each cell in the core
+    def calculate_nearest_neighbours_(self, k=10):
+        if hasattr(self, "cell_distances") == False:
+            self.calculate_cell_distances_()
+
+        self.nearest_neighbours = np.zeros((self.cell_number, len(self.cell_types_set)))
+        nearest_neighbours_idx = np.argpartition(self.cell_distances, k, axis=1)[:, :k]
+        for i in range(self.cell_number):
+            nearest_neighbours = self.cell_types[nearest_neighbours_idx[i,:]]
+            self.nearest_neighbours[i,:] = np.bincount(nearest_neighbours, minlength=len(self.cell_types_set))/k
+
+    # Calculate the cluster each cell belongs to using a K with
+    # the highest silhouette score
+    def calculate_clustering_(self):
+        silhouette_scores = []
+
+        if hasattr(self, "nearest_neighbours") == False:
+            self.calculate_nearest_neighbours_()
+
+        for k in range(2, 7):
+            kmeans = KMeans(n_clusters=k, random_state=0).fit(self.nearest_neighbours)
+            silhouette_scores.append(silhouette_score(self.nearest_neighbours, kmeans.labels_))
+        k = np.argmax(silhouette_scores) + 3
+
+        self.clustering = np.array(KMeans(n_clusters=k, random_state=0).fit(self.nearest_neighbours).labels_)
 
     ################################
     ########## Biomarkers ##########
@@ -282,5 +312,23 @@ class Core:
                     plt.legend()
                     plt.show()
                     plt.savefig("./k_function/K_function_" + self.name + "_" + type1 + "_to_" + type2 + ".png")
+
+        return returns
+    
+    # Calculate the entropy of the distribution of the neighbourhoods
+    def entropy_neighbourhood(self):
+        returns = {}
+
+        if hasattr(self, "clustering") == False:
+            self.calculate_clustering_()
+
+        k = np.max(self.clustering) + 1
+
+        self.biomarkers["Amount of neighbourhoods"] = k
+        returns["Amount of neighbourhoods"] = k
+
+        distribution = np.bincount(self.clustering)
+        self.biomarkers["Entropy of neighbourhood distribution"] = entropy(distribution, base=2) / np.log2(k)
+        returns["Entropy of neighbourhood distribution"] = entropy(distribution, base=2) / np.log2(k)
 
         return returns
