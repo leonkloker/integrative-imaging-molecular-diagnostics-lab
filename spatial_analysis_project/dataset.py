@@ -375,8 +375,9 @@ class Dataset:
 
         for biomarker in biomarkers:
             if not "Others" in biomarker:
-                features.append(self.biomarkers[biomarker])
-                features_names.append(biomarker)
+                if len(self.biomarkers[biomarker]) == len(self.patient_months):
+                    features.append(self.biomarkers[biomarker])
+                    features_names.append(biomarker)
         features = np.array(features)
 
         # Remove nan and inf values

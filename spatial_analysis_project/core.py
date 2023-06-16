@@ -95,7 +95,7 @@ class Core:
         self.cell_distances = distance_matrix(self.cell_coordinates, self.cell_coordinates)
         self.cell_distances[self.cell_distances==0] = np.inf
 
-    def calculate_neighbourhoods_(self, k=10):
+    def calculate_neighbourhoods_(self, k=50):
         """
         This function finds the k nearest neighbours of each cell in the core and
         calculates the distribution of the neighbouring cell types. The cellular neighbourhood
@@ -147,6 +147,8 @@ class Core:
         """
 
         returns = {}
+        self.biomarkers["cell_density_mu^2"] = self.cell_number / self.area
+        returns["cell_density_mu^2"] = self.biomarkers["cell_density_mu^2"]
         for cell_type in self.cell_types_set:
             self.biomarkers[cell_type + "_density_mu^2"] = self.cell_types_number[cell_type] / self.area
             returns[cell_type + "_density_mu^2"] = self.biomarkers[cell_type + "_density_mu^2"]
@@ -162,6 +164,8 @@ class Core:
         """
 
         returns = {}
+        self.biomarkers["average_area_px^2"] = np.mean(self.cell_areas)
+        returns["average_area_px^2"] = self.biomarkers["average_area_px^2"]
         for cell_type in self.cell_types_set:
             self.biomarkers[cell_type + "_average_area_px^2"] = np.mean(self.cell_areas[self.cell_types == self.cell_types_dic[cell_type]])
             returns[cell_type + "_average_area_px^2"] = self.biomarkers[cell_type + "_average_area_px^2"]
@@ -205,10 +209,7 @@ class Core:
                 self.biomarkers["Average amount of " + self.cell_types_set[i] + " cells within " + str(radius) + "mu of " + cell_type] = counts[i] / np.sum(mask)
                 returns["Average amount of " + self.cell_types_set[i] + " cells within " + str(radius) + "mu of " + cell_type] = counts[i] / np.sum(mask)
         return returns
-    
-    # For every cell of Type1, find the k closest cells
-    # then, among those cells, calculate the average fraction of cells of Type2
-    # One value for each possible combination of Type1-Type2
+
     def neighbouring_cell_type_amount_cutoff(self, k=50):
         """
         This function finds the average fraction of cells of type2 around
@@ -276,13 +277,13 @@ class Core:
                 returns["Average smallest distance from " + type1 + " to " + type2] = dist
         return returns
 
-    def g_function(self, plot=False):
+    def g_function(self, plot=True):
         """
         This function calculates the G-function for each possible combination of cell types
         (i.e. the cumulative sum of the smallest distances between cells of type1 and type2 that are
         less than a radius r). Then, the integral of the difference between the 
         empirical G-function and the theoretical G-function based on complete spatial randomness
-        is calculated as used as a biomarker.
+        is calculated and used as a biomarker.
 
         Args:
             plot: Boolean, whether to plot the G-function or not. Defaults to False.
@@ -356,7 +357,7 @@ class Core:
         (i.e. the cumulative distribution of the all the distances between cells of type1 and type2 that are
         less than a radius r). Then, the integral of the difference between the 
         empirical K-function and the theoretical K-function based on complete spatial randomness
-        is calculated as used as a biomarker.
+        is calculated and used as a biomarker.
 
         Args:
             plot: Boolean, whether to plot the K-function or not. Defaults to False.
@@ -439,7 +440,7 @@ class Core:
         if hasattr(self, "neighbourhoods_labels") == False:
             return returns
 
-        distribution = np.bincount(self.neighbourhoods_labels) / self.cell_number
+        distribution = np.bincount(self.neighbourhoods_labels, minlength=self.neighbourhoods_number) / self.cell_number
         
         for i in range(self.neighbourhoods_number):
             self.biomarkers["Fraction of cellular neighbourhood " + str(i) + " / " + str(self.neighbourhoods_number)] = distribution[i]
@@ -489,7 +490,7 @@ class Core:
         (i.e. the cumulative sum of the smallest distances between cells of neighbourhood1 
         and neighbourhood that are less than a radius r). Then, the integral of the difference between the 
         empirical G-function and the theoretical G-function based on complete spatial randomness
-        is calculated as used as a biomarker.
+        is calculated and used as a biomarker.
         
         Returns:
             returns: Dictionary, keys are the biomarker names and values 
@@ -548,7 +549,7 @@ class Core:
         (i.e. the cumulative distribution of the all the distances between cells of neighbourhood1 
         and neighbourhood2 that are less than a radius r). Then, the integral of the difference between the 
         empirical K-function and the theoretical K-function based on complete spatial randomness
-        is calculated as used as a biomarker.
+        is calculated and used as a biomarker.
         
         Returns:
             returns: Dictionary, keys are the biomarker names and values 
