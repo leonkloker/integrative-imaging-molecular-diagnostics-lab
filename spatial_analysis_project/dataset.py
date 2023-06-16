@@ -369,10 +369,14 @@ class Dataset:
         features = []
         features_names = []
         labels = []
+
+        # Turn into binary classification problem according to survival cutoff
         labels = np.array(self.patient_months) > survival_cutoff
+
         for biomarker in biomarkers:
-            features.append(self.biomarkers[biomarker])
-            features_names.append(biomarker)
+            if not "Others" in biomarker:
+                features.append(self.biomarkers[biomarker])
+                features_names.append(biomarker)
         features = np.array(features)
 
         # Remove nan and inf values

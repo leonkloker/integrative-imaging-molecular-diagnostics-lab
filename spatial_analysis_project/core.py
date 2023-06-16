@@ -441,14 +441,15 @@ class Core:
 
         distribution = np.bincount(self.neighbourhoods_labels) / self.cell_number
         
-        for i in range(distribution.size):
+        for i in range(self.neighbourhoods_number):
             self.biomarkers["Fraction of cellular neighbourhood " + str(i) + " / " + str(self.neighbourhoods_number)] = distribution[i]
             returns["Fraction of cellular neighbourhoods " + str(i) + " / " + str(self.neighbourhoods_number)] = distribution[i]
 
         for type in self.cell_types_set:
             mask = self.cell_types == self.cell_types_dic[type]
-            distribution = np.bincount(self.neighbourhoods_labels[mask]) / np.sum(mask)
-            for i in range(distribution.size):
+
+            distribution = np.bincount(np.array(self.neighbourhoods_labels[mask], dtype=int), minlength=self.neighbourhoods_number) / np.sum(mask)
+            for i in range(self.neighbourhoods_number):
                 self.biomarkers["Fraction of " + type + " that belong to neighbourhood " + str(i) + " / " + str(self.neighbourhoods_number)] = distribution[i]
                 returns["Fraction of " + type + " that belong to neighbourhood " + str(i) + " / " + str(self.neighbourhoods_number)] = distribution[i]
 
